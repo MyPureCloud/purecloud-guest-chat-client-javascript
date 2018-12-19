@@ -6,7 +6,7 @@ var superagent = _interopDefault(require('superagent'));
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 1.0.0
+ * @version 1.0.1
  */
 class ApiClient {
 	/**
@@ -288,30 +288,6 @@ class ApiClient {
 	}
 
 	/**
-	 * @description Redirects the user to the PureCloud logout page
-	 */
-	logout(logoutRedirectUri) {
-		if(this.hasLocalStorage) {
-			this._saveSettings({
-				apiKey: undefined,
-				state: undefined,
-				tokenExpiryTime: undefined,
-				tokenExpiryTimeString: undefined
-			});
-		}
-
-		var query = {
-			client_id: encodeURIComponent(this.clientId)
-		};
-
-		if (logoutRedirectUri)
-			query['redirect_uri'] = encodeURI(logoutRedirectUri);
-
-		var url = this._buildAuthUrl('logout', query);
-		window.location.replace(url);
-	}
-
-	/**
 	 * @description Constructs a URL to the auth server
 	 * @param {string} path - The path for the URL
 	 * @param {object} query - An object of key/value pairs to use for querystring keys/values
@@ -559,7 +535,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '1.0.0' });
+		//request.set({ 'purecloud-sdk': '1.0.1' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -686,7 +662,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 1.0.0
+	 * @version 1.0.1
 	 */
 
 	/**
@@ -973,7 +949,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 1.0.0
+ * @version 1.0.1
  */
 class platformClient {
 	constructor() {

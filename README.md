@@ -29,7 +29,7 @@ For direct use in a browser script:
 
 ~~~ html
 <!-- Include the CJS SDK -->
-<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/1.0.0/purecloud-guest-chat-client.min.js"></script>
+<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/1.0.1/purecloud-guest-chat-client.min.js"></script>
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
@@ -46,7 +46,7 @@ For direct use in a browser script:
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
-  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/1.0.0/purecloud-guest-chat-client.min.js'], (platformClient) => {
+  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/1.0.1/purecloud-guest-chat-client.min.js'], (platformClient) => {
     console.log(platformClient);
   });
 </script>
@@ -71,7 +71,7 @@ The node package's [package.json](https://github.com/MyPureCloud/purecloud-guest
 
 ### Creating a chat
 
-The guest chat APIs do not require standard PureCloud authentication, but do require a JWT token for all API calls other than creating a new chat.  
+The guest chat APIs do not require standard PureCloud authentication, but do require the JWT to be set for all API calls other than creating a new chat.  
 
 ~~~ javascript
 const client = platformClient.ApiClient.instance;
@@ -153,7 +153,7 @@ client.setEnvironment('mypurecloud.ie');
 
 ## Making Requests
 
-All API requests return a Promise which resolves to the response body, otherwise it rejects with an error. After authenticating using one of the methods defined above, the following code will make an authenticated request:
+All API requests return a Promise which resolves to the response body, otherwise it rejects with an error. After setting the JWT, the following code will make an authenticated request:
 
 ~~~ js
 // Create API instance
