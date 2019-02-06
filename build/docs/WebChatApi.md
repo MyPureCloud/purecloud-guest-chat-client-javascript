@@ -37,34 +37,30 @@ Requires NO permissions:
 
 ### Example Usage
 
-~~~ javascript
+```{"language":"javascript"}
 // Browser
 const platformClient = require('platformClient');
 // Node
 const platformClient = require('purecloud-guest-chat-client');
 
-// Configure API key authorization: Guest Chat JWT
-var Guest Chat JWT = platformClient.ApiClient.instance.authentications['Guest Chat JWT'];
-Guest Chat JWT.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to void)
-//Guest Chat JWT.apiKeyPrefix = 'Token';
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
 
-var apiInstance = new platformClient.WebChatApi();
+let apiInstance = new platformClient.WebChatApi();
 
-var conversationId = "conversationId_example"; // String | conversationId
-
-var memberId = "memberId_example"; // String | memberId
+let conversationId = "conversationId_example"; // String | conversationId
+let memberId = "memberId_example"; // String | memberId
 
 apiInstance.deleteWebchatGuestConversationMember(conversationId, memberId)
-  .then(function() {
+  .then(() => {
     console.log('deleteWebchatGuestConversationMember returned successfully.');
   })
-  .catch(function(err) {
-  	console.log('There was a failure calling deleteWebchatGuestConversationMember');
+  .catch((err) => {
+    console.log('There was a failure calling deleteWebchatGuestConversationMember');
     console.error(err);
   });
 
-~~~
+```
 
 ### Parameters
 
@@ -98,34 +94,30 @@ Requires NO permissions:
 
 ### Example Usage
 
-~~~ javascript
+```{"language":"javascript"}
 // Browser
 const platformClient = require('platformClient');
 // Node
 const platformClient = require('purecloud-guest-chat-client');
 
-// Configure API key authorization: Guest Chat JWT
-var Guest Chat JWT = platformClient.ApiClient.instance.authentications['Guest Chat JWT'];
-Guest Chat JWT.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to void)
-//Guest Chat JWT.apiKeyPrefix = 'Token';
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
 
-var apiInstance = new platformClient.WebChatApi();
+let apiInstance = new platformClient.WebChatApi();
 
-var conversationId = "conversationId_example"; // String | conversationId
-
-var memberId = "memberId_example"; // String | memberId
+let conversationId = "conversationId_example"; // String | conversationId
+let memberId = "memberId_example"; // String | memberId
 
 apiInstance.getWebchatGuestConversationMember(conversationId, memberId)
-  .then(function(data) {
+  .then((data) => {
     console.log(`getWebchatGuestConversationMember success! data: ${JSON.stringify(data, null, 2)}`);
   })
-  .catch(function(err) {
-  	console.log('There was a failure calling getWebchatGuestConversationMember');
+  .catch((err) => {
+    console.log('There was a failure calling getWebchatGuestConversationMember');
     console.error(err);
   });
 
-~~~
+```
 
 ### Parameters
 
@@ -159,37 +151,34 @@ Requires NO permissions:
 
 ### Example Usage
 
-~~~ javascript
+```{"language":"javascript"}
 // Browser
 const platformClient = require('platformClient');
 // Node
 const platformClient = require('purecloud-guest-chat-client');
 
-// Configure API key authorization: Guest Chat JWT
-var Guest Chat JWT = platformClient.ApiClient.instance.authentications['Guest Chat JWT'];
-Guest Chat JWT.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to void)
-//Guest Chat JWT.apiKeyPrefix = 'Token';
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
 
-var apiInstance = new platformClient.WebChatApi();
+let apiInstance = new platformClient.WebChatApi();
 
-var conversationId = "conversationId_example"; // String | conversationId
-
-var opts = { 
+let conversationId = "conversationId_example"; // String | conversationId
+let opts = { 
   'pageSize': 25, // Number | The number of entries to return per page, or omitted for the default.
   'pageNumber': 1, // Number | The page number to return, or omitted for the first page.
   'excludeDisconnectedMembers': false // Boolean | If true, the results will not contain members who have a DISCONNECTED state.
 };
+
 apiInstance.getWebchatGuestConversationMembers(conversationId, opts)
-  .then(function(data) {
+  .then((data) => {
     console.log(`getWebchatGuestConversationMembers success! data: ${JSON.stringify(data, null, 2)}`);
   })
-  .catch(function(err) {
-  	console.log('There was a failure calling getWebchatGuestConversationMembers');
+  .catch((err) => {
+    console.log('There was a failure calling getWebchatGuestConversationMembers');
     console.error(err);
   });
 
-~~~
+```
 
 ### Parameters
 
@@ -225,34 +214,30 @@ Requires NO permissions:
 
 ### Example Usage
 
-~~~ javascript
+```{"language":"javascript"}
 // Browser
 const platformClient = require('platformClient');
 // Node
 const platformClient = require('purecloud-guest-chat-client');
 
-// Configure API key authorization: Guest Chat JWT
-var Guest Chat JWT = platformClient.ApiClient.instance.authentications['Guest Chat JWT'];
-Guest Chat JWT.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to void)
-//Guest Chat JWT.apiKeyPrefix = 'Token';
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
 
-var apiInstance = new platformClient.WebChatApi();
+let apiInstance = new platformClient.WebChatApi();
 
-var conversationId = "conversationId_example"; // String | conversationId
-
-var messageId = "messageId_example"; // String | messageId
+let conversationId = "conversationId_example"; // String | conversationId
+let messageId = "messageId_example"; // String | messageId
 
 apiInstance.getWebchatGuestConversationMessage(conversationId, messageId)
-  .then(function(data) {
+  .then((data) => {
     console.log(`getWebchatGuestConversationMessage success! data: ${JSON.stringify(data, null, 2)}`);
   })
-  .catch(function(err) {
-  	console.log('There was a failure calling getWebchatGuestConversationMessage');
+  .catch((err) => {
+    console.log('There was a failure calling getWebchatGuestConversationMessage');
     console.error(err);
   });
 
-~~~
+```
 
 ### Parameters
 
@@ -286,36 +271,33 @@ Requires NO permissions:
 
 ### Example Usage
 
-~~~ javascript
+```{"language":"javascript"}
 // Browser
 const platformClient = require('platformClient');
 // Node
 const platformClient = require('purecloud-guest-chat-client');
 
-// Configure API key authorization: Guest Chat JWT
-var Guest Chat JWT = platformClient.ApiClient.instance.authentications['Guest Chat JWT'];
-Guest Chat JWT.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to void)
-//Guest Chat JWT.apiKeyPrefix = 'Token';
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
 
-var apiInstance = new platformClient.WebChatApi();
+let apiInstance = new platformClient.WebChatApi();
 
-var conversationId = "conversationId_example"; // String | conversationId
-
-var opts = { 
+let conversationId = "conversationId_example"; // String | conversationId
+let opts = { 
   'after': "after_example", // String | If available, get the messages chronologically after the id of this message
   'before': "before_example" // String | If available, get the messages chronologically before the id of this message
 };
+
 apiInstance.getWebchatGuestConversationMessages(conversationId, opts)
-  .then(function(data) {
+  .then((data) => {
     console.log(`getWebchatGuestConversationMessages success! data: ${JSON.stringify(data, null, 2)}`);
   })
-  .catch(function(err) {
-  	console.log('There was a failure calling getWebchatGuestConversationMessages');
+  .catch((err) => {
+    console.log('There was a failure calling getWebchatGuestConversationMessages');
     console.error(err);
   });
 
-~~~
+```
 
 ### Parameters
 
@@ -349,61 +331,57 @@ Requires NO permissions:
 
 ### Request Body Schema
 
-{::options parse_block_html="true" /}
-
 <script type="text/javascript">
 	function copyCreateWebChatMessageRequestExample() {
-		var $temp = $("<textarea>");
-		$("body").append($temp);
-		$temp.val($('#CreateWebChatMessageRequestExample').text()).select();
+		let temp = $("<textarea>");
+		$("body").append(temp);
+		temp.val($('#CreateWebChatMessageRequestExample').text()).select();
 		document.execCommand("copy");
-		$temp.remove();
+		temp.remove();
+		return false;
 	}
 </script>
 
-CreateWebChatMessageRequest <a style="cursor: pointer" onclick="copyCreateWebChatMessageRequestExample()">Copy</a>
+CreateWebChatMessageRequest <a href="#" onclick="return copyCreateWebChatMessageRequestExample()">Copy</a>
 
-<div id="CreateWebChatMessageRequestExample" style="max-height: 250px; overflow-y: scroll;">
-~~~ json
+<div id="CreateWebChatMessageRequestExample">
+
+```{"language":"json", "maxHeight": "250px"}
 { 
   "body": String, 
 }
-~~~
+```
+
 </div>
 
 
 ### Example Usage
 
-~~~ javascript
+```{"language":"javascript"}
 // Browser
 const platformClient = require('platformClient');
 // Node
 const platformClient = require('purecloud-guest-chat-client');
 
-// Configure API key authorization: Guest Chat JWT
-var Guest Chat JWT = platformClient.ApiClient.instance.authentications['Guest Chat JWT'];
-Guest Chat JWT.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to void)
-//Guest Chat JWT.apiKeyPrefix = 'Token';
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
 
-var apiInstance = new platformClient.WebChatApi();
+let apiInstance = new platformClient.WebChatApi();
 
-var conversationId = "conversationId_example"; // String | conversationId
-
-var memberId = "memberId_example"; // String | memberId
-
-var body = {}; // Object | Message
+let conversationId = "conversationId_example"; // String | conversationId
+let memberId = "memberId_example"; // String | memberId
+let body = {}; // Object | Message
 
 apiInstance.postWebchatGuestConversationMemberMessages(conversationId, memberId, body)
-  .then(function(data) {
+  .then((data) => {
     console.log(`postWebchatGuestConversationMemberMessages success! data: ${JSON.stringify(data, null, 2)}`);
   })
-  .catch(function(err) {
-  	console.log('There was a failure calling postWebchatGuestConversationMemberMessages');
+  .catch((err) => {
+    console.log('There was a failure calling postWebchatGuestConversationMemberMessages');
     console.error(err);
   });
 
-~~~
+```
 
 ### Parameters
 
@@ -438,34 +416,30 @@ Requires NO permissions:
 
 ### Example Usage
 
-~~~ javascript
+```{"language":"javascript"}
 // Browser
 const platformClient = require('platformClient');
 // Node
 const platformClient = require('purecloud-guest-chat-client');
 
-// Configure API key authorization: Guest Chat JWT
-var Guest Chat JWT = platformClient.ApiClient.instance.authentications['Guest Chat JWT'];
-Guest Chat JWT.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to void)
-//Guest Chat JWT.apiKeyPrefix = 'Token';
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
 
-var apiInstance = new platformClient.WebChatApi();
+let apiInstance = new platformClient.WebChatApi();
 
-var conversationId = "conversationId_example"; // String | conversationId
-
-var memberId = "memberId_example"; // String | memberId
+let conversationId = "conversationId_example"; // String | conversationId
+let memberId = "memberId_example"; // String | memberId
 
 apiInstance.postWebchatGuestConversationMemberTyping(conversationId, memberId)
-  .then(function(data) {
+  .then((data) => {
     console.log(`postWebchatGuestConversationMemberTyping success! data: ${JSON.stringify(data, null, 2)}`);
   })
-  .catch(function(err) {
-  	console.log('There was a failure calling postWebchatGuestConversationMemberTyping');
+  .catch((err) => {
+    console.log('There was a failure calling postWebchatGuestConversationMemberTyping');
     console.error(err);
   });
 
-~~~
+```
 
 ### Parameters
 
@@ -498,22 +472,22 @@ Requires NO permissions:
 
 ### Request Body Schema
 
-{::options parse_block_html="true" /}
-
 <script type="text/javascript">
 	function copyCreateWebChatConversationRequestExample() {
-		var $temp = $("<textarea>");
-		$("body").append($temp);
-		$temp.val($('#CreateWebChatConversationRequestExample').text()).select();
+		let temp = $("<textarea>");
+		$("body").append(temp);
+		temp.val($('#CreateWebChatConversationRequestExample').text()).select();
 		document.execCommand("copy");
-		$temp.remove();
+		temp.remove();
+		return false;
 	}
 </script>
 
-CreateWebChatConversationRequest <a style="cursor: pointer" onclick="copyCreateWebChatConversationRequestExample()">Copy</a>
+CreateWebChatConversationRequest <a href="#" onclick="return copyCreateWebChatConversationRequestExample()">Copy</a>
 
-<div id="CreateWebChatConversationRequestExample" style="max-height: 250px; overflow-y: scroll;">
-~~~ json
+<div id="CreateWebChatConversationRequestExample">
+
+```{"language":"json", "maxHeight": "250px"}
 { 
   "organizationId": String, 
   "deploymentId": String, 
@@ -537,32 +511,33 @@ CreateWebChatConversationRequest <a style="cursor: pointer" onclick="copyCreateW
   },  
   "memberAuthToken": String, 
 }
-~~~
+```
+
 </div>
 
 
 ### Example Usage
 
-~~~ javascript
+```{"language":"javascript"}
 // Browser
 const platformClient = require('platformClient');
 // Node
 const platformClient = require('purecloud-guest-chat-client');
 
-var apiInstance = new platformClient.WebChatApi();
+let apiInstance = new platformClient.WebChatApi();
 
-var body = {}; // Object | CreateConversationRequest
+let body = {}; // Object | CreateConversationRequest
 
 apiInstance.postWebchatGuestConversations(body)
-  .then(function(data) {
+  .then((data) => {
     console.log(`postWebchatGuestConversations success! data: ${JSON.stringify(data, null, 2)}`);
   })
-  .catch(function(err) {
-  	console.log('There was a failure calling postWebchatGuestConversations');
+  .catch((err) => {
+    console.log('There was a failure calling postWebchatGuestConversations');
     console.error(err);
   });
 
-~~~
+```
 
 ### Parameters
 

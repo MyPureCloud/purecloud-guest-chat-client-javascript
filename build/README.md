@@ -16,41 +16,41 @@ ispreview: true
 
 For node.js via [NPM](https://www.npmjs.com/package/purecloud-guest-chat-client):
 
-~~~ sh
+```{"language":"sh"}
 npm install purecloud-guest-chat-client
-~~~
+```
 
-~~~ javascript
+```{"language":"javascript"}
 // Obtain a reference to the platformClient object
 const platformClient = require('purecloud-guest-chat-client');
-~~~
+```
 
 For direct use in a browser script:
 
-~~~ html
+```{"language":"html"}
 <!-- Include the CJS SDK -->
-<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/1.0.1/purecloud-guest-chat-client.min.js"></script>
+<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/1.0.2/purecloud-guest-chat-client.min.js"></script>
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
   const platformClient = require('platformClient');
 </script>
-~~~
+```
 
 
 ## AMD
 
-~~~ html
+```{"language":"html"}
 <!-- Include requirejs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
-  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/1.0.1/purecloud-guest-chat-client.min.js'], (platformClient) => {
+  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/1.0.2/purecloud-guest-chat-client.min.js'], (platformClient) => {
     console.log(platformClient);
   });
 </script>
-~~~
+```
 
 ## ES6 Classes and Other Entry Points
 
@@ -73,7 +73,7 @@ The node package's [package.json](https://github.com/MyPureCloud/purecloud-guest
 
 The guest chat APIs do not require standard PureCloud authentication, but do require the JWT to be set for all API calls other than creating a new chat.  
 
-~~~ javascript
+```{"language":"javascript"}
 const client = platformClient.ApiClient.instance;
 let chatInfo, socket;
 
@@ -138,24 +138,24 @@ webChatApi.postWebchatGuestConversations(createChatBody)
     });
   })
   .catch(console.error);
-~~~
+```
 
 
 ## Environments
 
 If connecting to a PureCloud environment other than mypurecloud.com (e.g. mypurecloud.ie), set the environment on the `ApiClient` instance.
 
-~~~ js
+```{"language":"javascript"}
 const client = platformClient.ApiClient.instance;
 client.setEnvironment('mypurecloud.ie');
-~~~
+```
 
 
 ## Making Requests
 
 All API requests return a Promise which resolves to the response body, otherwise it rejects with an error. After setting the JWT, the following code will make an authenticated request:
 
-~~~ js
+```{"language":"javascript"}
 // Create API instance
 const webChatApi = new platformClient.WebChatApi();
 
@@ -177,21 +177,21 @@ webChatApi.postWebchatGuestConversations(createChatBody)
     // Handle failure response
     console.log(err);
   });
-~~~
+```
 
 
 ### Extended Responses
 
 By default, the SDK will return only the response body as the result of an API function call. To retrieve additional information about the response, enable extended responses. This will return the extended response for all API function calls:
 
-~~~ js
+```{"language":"javascript"}
 const client = platformClient.ApiClient.instance;
 client.setReturnExtendedResponses(true);
-~~~
+```
 
 Extended response object example (`body` and `text` have been truncated):
 
-~~~ json
+```{"language":"json"}
 {
   "status": 200,
   "statusText": "",
@@ -209,7 +209,7 @@ Extended response object example (`body` and `text` have been truncated):
   "text": "",
   "error": null
 }
-~~~
+```
 
 
 ### Using a Proxy (Node.js only)
@@ -223,7 +223,7 @@ After both steps have been completed, the configured proxy server will be used f
 
 NOTE: SDK proxy configuration is only available in the node.js package due to `superagent-proxy`'s incompatibility with browserify. Additionally, `superagent-proxy` is not included a dependency of the SDK and must be provided by your node application's dependencies.
 
-~~~ js
+```{"language":"javascript"}
 const client = platformClient.ApiClient.instance;
 require('superagent-proxy')(client.superagent);
 // Configure settings for your proxy here
@@ -233,7 +233,7 @@ client.proxy = {
   port: 443,
   protocol: 'https',
 };
-~~~
+```
 
 
 ### Error Responses
@@ -242,7 +242,7 @@ Error responses will always be thrown as an extended response object. Note that 
 
 Example error response object:
 
-~~~ json
+```{"language":"json"}
 {
   "status": 404,
   "statusText": "",
@@ -269,17 +269,17 @@ Example error response object:
     "original": null
   }
 }
-~~~
+```
 
 
 ## Debug Logging
 
 There are hooks to trace requests and responses.  To enable debug tracing, provide a log object. Optionally, specify a maximum number of lines. If specified, the response body trace will be truncated. If not specified, the entire response body will be traced out.
 
-~~~ js
+```{"language":"javascript"}
 const client = platformClient.ApiClient.instance;
 client.setDebugLog(console.log, 25);
-~~~
+```
 
 
 ## Versioning
