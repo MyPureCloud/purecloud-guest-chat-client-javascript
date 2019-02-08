@@ -37,10 +37,13 @@ declare class ProxyConfig {
 
 declare class WebChatApi {  
   	deleteWebchatGuestConversationMember(conversationId: string, memberId: string): Promise<void>; 
+  	getWebchatGuestConversationMediarequest(conversationId: string, mediaRequestId: string): Promise<Models.WebChatGuestMediaRequest>; 
+  	getWebchatGuestConversationMediarequests(conversationId: string): Promise<Models.WebChatGuestMediaRequestEntityList>; 
   	getWebchatGuestConversationMember(conversationId: string, memberId: string): Promise<Models.WebChatMemberInfo>; 
   	getWebchatGuestConversationMembers(conversationId: string, opts?: WebChatApi.getWebchatGuestConversationMembersOptions): Promise<Models.WebChatMemberInfoEntityList>; 
   	getWebchatGuestConversationMessage(conversationId: string, messageId: string): Promise<Models.WebChatMessage>; 
   	getWebchatGuestConversationMessages(conversationId: string, opts?: WebChatApi.getWebchatGuestConversationMessagesOptions): Promise<Models.WebChatMessageEntityList>; 
+  	patchWebchatGuestConversationMediarequest(conversationId: string, mediaRequestId: string, body: Models.WebChatGuestMediaRequest): Promise<Models.WebChatGuestMediaRequest>; 
   	postWebchatGuestConversationMemberMessages(conversationId: string, memberId: string, body: Models.CreateWebChatMessageRequest): Promise<Models.WebChatMessage>; 
   	postWebchatGuestConversationMemberTyping(conversationId: string, memberId: string): Promise<Models.WebChatTyping>; 
   	postWebchatGuestConversations(body: Models.CreateWebChatConversationRequest): Promise<Models.CreateWebChatConversationResponse>;
@@ -55,6 +58,7 @@ declare namespace WebChatApi {
 	export interface getWebchatGuestConversationMessagesOptions { 
 		"after"?: string;
 		"before"?: string;
+		"sortOrder"?: string;
 	}
 }
 
@@ -63,7 +67,7 @@ declare namespace Models {
 		"organizationId": string;
 		"deploymentId": string;
 		"routingTarget": Models.WebChatRoutingTarget;
-		"memberInfo": Models.WebChatMemberInfo;
+		"memberInfo": Models.GuestMemberInfo;
 		"memberAuthToken"?: string;
 	}
 	
@@ -98,11 +102,30 @@ declare namespace Models {
 		"errors"?: Array<Models.ErrorBody>;
 	}
 	
+	export interface GuestMemberInfo { 
+		"displayName": string;
+		"profileImageUrl"?: string;
+		"customFields"?: { [key: string]: string; };
+	}
+	
 	export interface WebChatConversation { 
 		"id"?: string;
 		"name"?: string;
 		"member"?: Models.WebChatMemberInfo;
 		"selfUri"?: string;
+	}
+	
+	export interface WebChatGuestMediaRequest { 
+		"id"?: string;
+		"name"?: string;
+		"types": Array<string>;
+		"state": string;
+		"communicationId"?: string;
+		"selfUri"?: string;
+	}
+	
+	export interface WebChatGuestMediaRequestEntityList { 
+		"entities"?: Array<Models.WebChatGuestMediaRequest>;
 	}
 	
 	export interface WebChatMemberInfo { 
@@ -149,8 +172,8 @@ declare namespace Models {
 	}
 	
 	export interface WebChatRoutingTarget { 
-		"targetType"?: string;
-		"targetAddress"?: string;
+		"targetType": string;
+		"targetAddress": string;
 		"skills"?: Array<string>;
 		"language"?: string;
 		"priority"?: number;

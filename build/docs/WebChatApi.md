@@ -9,10 +9,13 @@ All URIs are relative to *https://api.mypurecloud.com*
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 [**deleteWebchatGuestConversationMember**](WebChatApi.html#deleteWebchatGuestConversationMember) | **DELETE** /api/v2/webchat/guest/conversations/{conversationId}/members/{memberId} | Remove a member from a chat conversation
+[**getWebchatGuestConversationMediarequest**](WebChatApi.html#getWebchatGuestConversationMediarequest) | **GET** /api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId} | Get a media request in the conversation
+[**getWebchatGuestConversationMediarequests**](WebChatApi.html#getWebchatGuestConversationMediarequests) | **GET** /api/v2/webchat/guest/conversations/{conversationId}/mediarequests | Get all media requests to the guest in the conversation
 [**getWebchatGuestConversationMember**](WebChatApi.html#getWebchatGuestConversationMember) | **GET** /api/v2/webchat/guest/conversations/{conversationId}/members/{memberId} | Get a web chat conversation member
 [**getWebchatGuestConversationMembers**](WebChatApi.html#getWebchatGuestConversationMembers) | **GET** /api/v2/webchat/guest/conversations/{conversationId}/members | Get the members of a chat conversation.
 [**getWebchatGuestConversationMessage**](WebChatApi.html#getWebchatGuestConversationMessage) | **GET** /api/v2/webchat/guest/conversations/{conversationId}/messages/{messageId} | Get a web chat conversation message
 [**getWebchatGuestConversationMessages**](WebChatApi.html#getWebchatGuestConversationMessages) | **GET** /api/v2/webchat/guest/conversations/{conversationId}/messages | Get the messages of a chat conversation.
+[**patchWebchatGuestConversationMediarequest**](WebChatApi.html#patchWebchatGuestConversationMediarequest) | **PATCH** /api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId} | Update a media request in the conversation, setting the state to ACCEPTED/DECLINED/ERRORED
 [**postWebchatGuestConversationMemberMessages**](WebChatApi.html#postWebchatGuestConversationMemberMessages) | **POST** /api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}/messages | Send a message in a chat conversation.
 [**postWebchatGuestConversationMemberTyping**](WebChatApi.html#postWebchatGuestConversationMemberTyping) | **POST** /api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}/typing | Send a typing-indicator in a chat conversation.
 [**postWebchatGuestConversations**](WebChatApi.html#postWebchatGuestConversations) | **POST** /api/v2/webchat/guest/conversations | Create an ACD chat conversation from an external customer.
@@ -74,6 +77,118 @@ apiInstance.deleteWebchatGuestConversationMember(conversationId, memberId)
 ### Return type
 
 void (no response body)
+
+<a name="getWebchatGuestConversationMediarequest"></a>
+
+# WebChatGuestMediaRequest getWebchatGuestConversationMediarequest(conversationId, mediaRequestId)
+
+
+
+GET /api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}
+
+Get a media request in the conversation
+
+
+
+Requires NO permissions: 
+
+
+
+
+### Example Usage
+
+```{"language":"javascript"}
+// Browser
+const platformClient = require('platformClient');
+// Node
+const platformClient = require('purecloud-guest-chat-client');
+
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
+
+let apiInstance = new platformClient.WebChatApi();
+
+let conversationId = "conversationId_example"; // String | conversationId
+let mediaRequestId = "mediaRequestId_example"; // String | mediaRequestId
+
+apiInstance.getWebchatGuestConversationMediarequest(conversationId, mediaRequestId)
+  .then((data) => {
+    console.log(`getWebchatGuestConversationMediarequest success! data: ${JSON.stringify(data, null, 2)}`);
+  })
+  .catch((err) => {
+    console.log('There was a failure calling getWebchatGuestConversationMediarequest');
+    console.error(err);
+  });
+
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+ **conversationId** | **String** | conversationId |  |
+ **mediaRequestId** | **String** | mediaRequestId |  |
+{: class="table table-striped"}
+
+### Return type
+
+**WebChatGuestMediaRequest**
+
+<a name="getWebchatGuestConversationMediarequests"></a>
+
+# WebChatGuestMediaRequestEntityList getWebchatGuestConversationMediarequests(conversationId)
+
+
+
+GET /api/v2/webchat/guest/conversations/{conversationId}/mediarequests
+
+Get all media requests to the guest in the conversation
+
+
+
+Requires NO permissions: 
+
+
+
+
+### Example Usage
+
+```{"language":"javascript"}
+// Browser
+const platformClient = require('platformClient');
+// Node
+const platformClient = require('purecloud-guest-chat-client');
+
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
+
+let apiInstance = new platformClient.WebChatApi();
+
+let conversationId = "conversationId_example"; // String | conversationId
+
+apiInstance.getWebchatGuestConversationMediarequests(conversationId)
+  .then((data) => {
+    console.log(`getWebchatGuestConversationMediarequests success! data: ${JSON.stringify(data, null, 2)}`);
+  })
+  .catch((err) => {
+    console.log('There was a failure calling getWebchatGuestConversationMediarequests');
+    console.error(err);
+  });
+
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+ **conversationId** | **String** | conversationId |  |
+{: class="table table-striped"}
+
+### Return type
+
+**WebChatGuestMediaRequestEntityList**
 
 <a name="getWebchatGuestConversationMember"></a>
 
@@ -285,7 +400,8 @@ let apiInstance = new platformClient.WebChatApi();
 let conversationId = "conversationId_example"; // String | conversationId
 let opts = { 
   'after': "after_example", // String | If available, get the messages chronologically after the id of this message
-  'before': "before_example" // String | If available, get the messages chronologically before the id of this message
+  'before': "before_example", // String | If available, get the messages chronologically before the id of this message
+  'sortOrder': "ascending" // String | Sort order
 };
 
 apiInstance.getWebchatGuestConversationMessages(conversationId, opts)
@@ -307,11 +423,101 @@ apiInstance.getWebchatGuestConversationMessages(conversationId, opts)
  **conversationId** | **String** | conversationId |  |
  **after** | **String** | If available, get the messages chronologically after the id of this message | [optional]  |
  **before** | **String** | If available, get the messages chronologically before the id of this message | [optional]  |
+ **sortOrder** | **String** | Sort order | [optional] [default to ascending]<br />**Values**: ascending, descending |
 {: class="table table-striped"}
 
 ### Return type
 
 **WebChatMessageEntityList**
+
+<a name="patchWebchatGuestConversationMediarequest"></a>
+
+# WebChatGuestMediaRequest patchWebchatGuestConversationMediarequest(conversationId, mediaRequestId, body)
+
+
+
+PATCH /api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}
+
+Update a media request in the conversation, setting the state to ACCEPTED/DECLINED/ERRORED
+
+
+
+Requires NO permissions: 
+
+
+
+### Request Body Schema
+
+<script type="text/javascript">
+	function copyWebChatGuestMediaRequestExample() {
+		let temp = $("<textarea>");
+		$("body").append(temp);
+		temp.val($('#WebChatGuestMediaRequestExample').text()).select();
+		document.execCommand("copy");
+		temp.remove();
+		return false;
+	}
+</script>
+
+WebChatGuestMediaRequest <a href="#" onclick="return copyWebChatGuestMediaRequestExample()">Copy</a>
+
+<div id="WebChatGuestMediaRequestExample">
+
+```{"language":"json", "maxHeight": "250px"}
+{ 
+  "id": String, 
+  "name": String, 
+  "types": [String], 
+  "state": String, 
+  "communicationId": String, 
+  "selfUri": String, 
+}
+```
+
+</div>
+
+
+### Example Usage
+
+```{"language":"javascript"}
+// Browser
+const platformClient = require('platformClient');
+// Node
+const platformClient = require('purecloud-guest-chat-client');
+
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
+
+let apiInstance = new platformClient.WebChatApi();
+
+let conversationId = "conversationId_example"; // String | conversationId
+let mediaRequestId = "mediaRequestId_example"; // String | mediaRequestId
+let body = {}; // Object | Request
+
+apiInstance.patchWebchatGuestConversationMediarequest(conversationId, mediaRequestId, body)
+  .then((data) => {
+    console.log(`patchWebchatGuestConversationMediarequest success! data: ${JSON.stringify(data, null, 2)}`);
+  })
+  .catch((err) => {
+    console.log('There was a failure calling patchWebchatGuestConversationMediarequest');
+    console.error(err);
+  });
+
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+ **conversationId** | **String** | conversationId |  |
+ **mediaRequestId** | **String** | mediaRequestId |  |
+ **body** | **Object** | Request |  |
+{: class="table table-striped"}
+
+### Return type
+
+**WebChatGuestMediaRequest**
 
 <a name="postWebchatGuestConversationMemberMessages"></a>
 
@@ -464,7 +670,7 @@ POST /api/v2/webchat/guest/conversations
 
 Create an ACD chat conversation from an external customer.
 
-
+This endpoint will create a new ACD Chat conversation under the specified Chat Deployment.  The conversation will begin with a guest member in it (with a role=CUSTOMER) according to the customer information that is supplied. If the guest member is authenticated, the &#39;memberAuthToken&#39; field should include his JWT as generated by the &#39;POST /api/v2/signeddata&#39; resource; if the guest member is anonymous (and the Deployment permits it) this field can be omitted.  The returned data includes the IDs of the conversation created, along with a newly-create JWT token that you can supply to all future endpoints as authentication to perform operations against that conversation. After successfully creating a conversation, you should connect a websocket to the event stream named in the &#39;eventStreamUri&#39; field of the response; the conversation is not routed until the event stream is attached.
 
 Requires NO permissions: 
 
@@ -499,15 +705,9 @@ CreateWebChatConversationRequest <a href="#" onclick="return copyCreateWebChatCo
     "priority": Number, 
   },  
   "memberInfo": { 
-    "id": String, 
     "displayName": String, 
     "profileImageUrl": String, 
-    "role": String, 
-    "joinDate": Date, 
-    "leaveDate": Date, 
-    "authenticatedGuest": Boolean, 
     "customFields": {String: String}, 
-    "state": String, 
   },  
   "memberAuthToken": String, 
 }

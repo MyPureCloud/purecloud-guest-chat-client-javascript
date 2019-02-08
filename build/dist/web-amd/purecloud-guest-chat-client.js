@@ -4,7 +4,7 @@ define(['superagent'], function (superagent) { 'use strict';
 
 	/**
 	 * @module purecloud-guest-chat-client/ApiClient
-	 * @version 1.0.2
+	 * @version 2.0.0
 	 */
 	class ApiClient {
 		/**
@@ -533,7 +533,7 @@ define(['superagent'], function (superagent) { 'use strict';
 
 			// set header parameters
 			request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-			//request.set({ 'purecloud-sdk': '1.0.2' });
+			//request.set({ 'purecloud-sdk': '2.0.0' });
 
 			// set request timeout
 			request.timeout(this.timeout);
@@ -660,7 +660,7 @@ define(['superagent'], function (superagent) { 'use strict';
 		/**
 		 * WebChat service.
 		 * @module purecloud-guest-chat-client/api/WebChatApi
-		 * @version 1.0.2
+		 * @version 2.0.0
 		 */
 
 		/**
@@ -695,6 +695,61 @@ define(['superagent'], function (superagent) { 'use strict';
 				'/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}', 
 				'DELETE', 
 				{ 'conversationId': conversationId,'memberId': memberId }, 
+				{  }, 
+				{  }, 
+				{  }, 
+				null, 
+				['Guest Chat JWT'], 
+				['application/json'], 
+				['application/json']
+			);
+		}
+
+		/**
+		 * Get a media request in the conversation
+		 * 
+		 * @param {String} conversationId conversationId
+		 * @param {String} mediaRequestId mediaRequestId
+		 */
+		getWebchatGuestConversationMediarequest(conversationId, mediaRequestId) { 
+			// verify the required parameter 'conversationId' is set
+			if (conversationId === undefined || conversationId === null) {
+				throw 'Missing the required parameter "conversationId" when calling getWebchatGuestConversationMediarequest';
+			}
+			// verify the required parameter 'mediaRequestId' is set
+			if (mediaRequestId === undefined || mediaRequestId === null) {
+				throw 'Missing the required parameter "mediaRequestId" when calling getWebchatGuestConversationMediarequest';
+			}
+
+			return this.apiClient.callApi(
+				'/api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}', 
+				'GET', 
+				{ 'conversationId': conversationId,'mediaRequestId': mediaRequestId }, 
+				{  }, 
+				{  }, 
+				{  }, 
+				null, 
+				['Guest Chat JWT'], 
+				['application/json'], 
+				['application/json']
+			);
+		}
+
+		/**
+		 * Get all media requests to the guest in the conversation
+		 * 
+		 * @param {String} conversationId conversationId
+		 */
+		getWebchatGuestConversationMediarequests(conversationId) { 
+			// verify the required parameter 'conversationId' is set
+			if (conversationId === undefined || conversationId === null) {
+				throw 'Missing the required parameter "conversationId" when calling getWebchatGuestConversationMediarequests';
+			}
+
+			return this.apiClient.callApi(
+				'/api/v2/webchat/guest/conversations/{conversationId}/mediarequests', 
+				'GET', 
+				{ 'conversationId': conversationId }, 
 				{  }, 
 				{  }, 
 				{  }, 
@@ -803,6 +858,7 @@ define(['superagent'], function (superagent) { 'use strict';
 		 * @param {Object} opts Optional parameters
 		 * @param {String} opts.after If available, get the messages chronologically after the id of this message
 		 * @param {String} opts.before If available, get the messages chronologically before the id of this message
+		 * @param {Object} opts.sortOrder Sort order (default to ascending)
 		 */
 		getWebchatGuestConversationMessages(conversationId, opts) { 
 			opts = opts || {};
@@ -816,10 +872,45 @@ define(['superagent'], function (superagent) { 'use strict';
 				'/api/v2/webchat/guest/conversations/{conversationId}/messages', 
 				'GET', 
 				{ 'conversationId': conversationId }, 
-				{ 'after': opts['after'],'before': opts['before'] }, 
+				{ 'after': opts['after'],'before': opts['before'],'sortOrder': opts['sortOrder'] }, 
 				{  }, 
 				{  }, 
 				null, 
+				['Guest Chat JWT'], 
+				['application/json'], 
+				['application/json']
+			);
+		}
+
+		/**
+		 * Update a media request in the conversation, setting the state to ACCEPTED/DECLINED/ERRORED
+		 * 
+		 * @param {String} conversationId conversationId
+		 * @param {String} mediaRequestId mediaRequestId
+		 * @param {Object} body Request
+		 */
+		patchWebchatGuestConversationMediarequest(conversationId, mediaRequestId, body) { 
+			// verify the required parameter 'conversationId' is set
+			if (conversationId === undefined || conversationId === null) {
+				throw 'Missing the required parameter "conversationId" when calling patchWebchatGuestConversationMediarequest';
+			}
+			// verify the required parameter 'mediaRequestId' is set
+			if (mediaRequestId === undefined || mediaRequestId === null) {
+				throw 'Missing the required parameter "mediaRequestId" when calling patchWebchatGuestConversationMediarequest';
+			}
+			// verify the required parameter 'body' is set
+			if (body === undefined || body === null) {
+				throw 'Missing the required parameter "body" when calling patchWebchatGuestConversationMediarequest';
+			}
+
+			return this.apiClient.callApi(
+				'/api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}', 
+				'PATCH', 
+				{ 'conversationId': conversationId,'mediaRequestId': mediaRequestId }, 
+				{  }, 
+				{  }, 
+				{  }, 
+				body, 
 				['Guest Chat JWT'], 
 				['application/json'], 
 				['application/json']
@@ -893,7 +984,7 @@ define(['superagent'], function (superagent) { 'use strict';
 
 		/**
 		 * Create an ACD chat conversation from an external customer.
-		 * 
+		 * This endpoint will create a new ACD Chat conversation under the specified Chat Deployment.  The conversation will begin with a guest member in it (with a role=CUSTOMER) according to the customer information that is supplied. If the guest member is authenticated, the &#39;memberAuthToken&#39; field should include his JWT as generated by the &#39;POST /api/v2/signeddata&#39; resource; if the guest member is anonymous (and the Deployment permits it) this field can be omitted.  The returned data includes the IDs of the conversation created, along with a newly-create JWT token that you can supply to all future endpoints as authentication to perform operations against that conversation. After successfully creating a conversation, you should connect a websocket to the event stream named in the &#39;eventStreamUri&#39; field of the response; the conversation is not routed until the event stream is attached.
 		 * @param {Object} body CreateConversationRequest
 		 */
 		postWebchatGuestConversations(body) { 
@@ -947,7 +1038,7 @@ define(['superagent'], function (superagent) { 'use strict';
 	 * </pre>
 	 * </p>
 	 * @module purecloud-guest-chat-client/index
-	 * @version 1.0.2
+	 * @version 2.0.0
 	 */
 	class platformClient {
 		constructor() {
