@@ -555,6 +555,7 @@ CreateWebChatMessageRequest <a href="#" onclick="return copyCreateWebChatMessage
 ```{"language":"json", "maxHeight": "250px"}
 { 
   "body": String, 
+  "bodyType": String, 
 }
 ```
 
@@ -706,10 +707,27 @@ CreateWebChatConversationRequest <a href="#" onclick="return copyCreateWebChatCo
   },  
   "memberInfo": { 
     "displayName": String, 
-    "profileImageUrl": String, 
+    "avatarImageUrl": String, 
     "customFields": {String: String}, 
   },  
   "memberAuthToken": String, 
+  "journeyContext": { 
+    "customer": { 
+      "id": String, 
+      "type": String, 
+    },  
+    "customerSession": { 
+      "id": String, 
+      "type": String, 
+    },  
+    "triggeringAction": { 
+      "id": String, 
+      "actionMap": { 
+        "id": String, 
+        "version": Number, 
+      },  
+    },  
+  },  
 }
 ```
 

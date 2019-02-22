@@ -69,6 +69,7 @@ declare namespace Models {
 		"routingTarget": Models.WebChatRoutingTarget;
 		"memberInfo": Models.GuestMemberInfo;
 		"memberAuthToken"?: string;
+		"journeyContext"?: Models.JourneyContext;
 	}
 	
 	export interface CreateWebChatConversationResponse { 
@@ -80,6 +81,7 @@ declare namespace Models {
 	
 	export interface CreateWebChatMessageRequest { 
 		"body": string;
+		"bodyType"?: string;
 	}
 	
 	export interface Detail { 
@@ -104,8 +106,34 @@ declare namespace Models {
 	
 	export interface GuestMemberInfo { 
 		"displayName": string;
-		"profileImageUrl"?: string;
+		"avatarImageUrl"?: string;
 		"customFields"?: { [key: string]: string; };
+	}
+	
+	export interface JourneyAction { 
+		"id": string;
+		"actionMap"?: Models.JourneyActionMap;
+	}
+	
+	export interface JourneyActionMap { 
+		"id": string;
+		"version": number;
+	}
+	
+	export interface JourneyContext { 
+		"customer"?: Models.JourneyCustomer;
+		"customerSession"?: Models.JourneyCustomerSession;
+		"triggeringAction"?: Models.JourneyAction;
+	}
+	
+	export interface JourneyCustomer { 
+		"id": string;
+		"type": string;
+	}
+	
+	export interface JourneyCustomerSession { 
+		"id": string;
+		"type": string;
 	}
 	
 	export interface WebChatConversation { 
@@ -131,7 +159,7 @@ declare namespace Models {
 	export interface WebChatMemberInfo { 
 		"id"?: string;
 		"displayName"?: string;
-		"profileImageUrl"?: string;
+		"avatarImageUrl"?: string;
 		"role": string;
 		"joinDate"?: string;
 		"leaveDate"?: string;
@@ -147,8 +175,8 @@ declare namespace Models {
 		"total"?: number;
 		"firstUri"?: string;
 		"selfUri"?: string;
-		"previousUri"?: string;
 		"nextUri"?: string;
+		"previousUri"?: string;
 		"lastUri"?: string;
 		"pageCount"?: number;
 	}
@@ -159,6 +187,7 @@ declare namespace Models {
 		"conversation": Models.WebChatConversation;
 		"sender": Models.WebChatMemberInfo;
 		"body": string;
+		"bodyType": string;
 		"timestamp": string;
 		"selfUri"?: string;
 	}
