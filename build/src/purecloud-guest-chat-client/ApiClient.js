@@ -2,7 +2,7 @@ import superagent from 'superagent';
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 3.0.0
+ * @version 4.0.0
  */
 class ApiClient {
 	/**
@@ -531,7 +531,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '3.0.0' });
+		//request.set({ 'purecloud-sdk': '4.0.0' });
 
 		// set request timeout
 		request.timeout(this.timeout);

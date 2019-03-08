@@ -4,7 +4,7 @@ define(['superagent'], function (superagent) { 'use strict';
 
 	/**
 	 * @module purecloud-guest-chat-client/ApiClient
-	 * @version 3.0.0
+	 * @version 4.0.0
 	 */
 	class ApiClient {
 		/**
@@ -533,7 +533,7 @@ define(['superagent'], function (superagent) { 'use strict';
 
 			// set header parameters
 			request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-			//request.set({ 'purecloud-sdk': '3.0.0' });
+			//request.set({ 'purecloud-sdk': '4.0.0' });
 
 			// set request timeout
 			request.timeout(this.timeout);
@@ -660,7 +660,7 @@ define(['superagent'], function (superagent) { 'use strict';
 		/**
 		 * WebChat service.
 		 * @module purecloud-guest-chat-client/api/WebChatApi
-		 * @version 3.0.0
+		 * @version 4.0.0
 		 */
 
 		/**
@@ -1038,7 +1038,7 @@ define(['superagent'], function (superagent) { 'use strict';
 	 * </pre>
 	 * </p>
 	 * @module purecloud-guest-chat-client/index
-	 * @version 3.0.0
+	 * @version 4.0.0
 	 */
 	class platformClient {
 		constructor() {

@@ -128,7 +128,7 @@ declare namespace Models {
 	
 	export interface JourneyCustomer { 
 		"id": string;
-		"type": string;
+		"idType": string;
 	}
 	
 	export interface JourneyCustomerSession { 
@@ -149,6 +149,7 @@ declare namespace Models {
 		"types": Array<string>;
 		"state": string;
 		"communicationId"?: string;
+		"securityKey"?: string;
 		"selfUri"?: string;
 	}
 	

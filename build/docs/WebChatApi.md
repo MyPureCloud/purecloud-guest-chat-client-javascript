@@ -470,6 +470,7 @@ WebChatGuestMediaRequest <a href="#" onclick="return copyWebChatGuestMediaReques
   "types": [String], 
   "state": String, 
   "communicationId": String, 
+  "securityKey": String, 
   "selfUri": String, 
 }
 ```
@@ -714,7 +715,7 @@ CreateWebChatConversationRequest <a href="#" onclick="return copyCreateWebChatCo
   "journeyContext": { 
     "customer": { 
       "id": String, 
-      "type": String, 
+      "idType": String, 
     },  
     "customerSession": { 
       "id": String, 
