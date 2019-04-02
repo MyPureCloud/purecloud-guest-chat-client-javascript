@@ -112,7 +112,7 @@ declare namespace Models {
 	
 	export interface JourneyAction { 
 		"id": string;
-		"actionMap"?: Models.JourneyActionMap;
+		"actionMap": Models.JourneyActionMap;
 	}
 	
 	export interface JourneyActionMap { 
@@ -121,7 +121,7 @@ declare namespace Models {
 	}
 	
 	export interface JourneyContext { 
-		"customer"?: Models.JourneyCustomer;
+		"customer": Models.JourneyCustomer;
 		"customerSession"?: Models.JourneyCustomerSession;
 		"triggeringAction"?: Models.JourneyAction;
 	}
@@ -176,9 +176,9 @@ declare namespace Models {
 		"total"?: number;
 		"firstUri"?: string;
 		"selfUri"?: string;
-		"nextUri"?: string;
-		"previousUri"?: string;
 		"lastUri"?: string;
+		"previousUri"?: string;
+		"nextUri"?: string;
 		"pageCount"?: number;
 	}
 	
