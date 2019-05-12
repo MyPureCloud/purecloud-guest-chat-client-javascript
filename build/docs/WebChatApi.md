@@ -401,7 +401,8 @@ let conversationId = "conversationId_example"; // String | conversationId
 let opts = { 
   'after': "after_example", // String | If available, get the messages chronologically after the id of this message
   'before': "before_example", // String | If available, get the messages chronologically before the id of this message
-  'sortOrder': "ascending" // String | Sort order
+  'sortOrder': "ascending", // String | Sort order
+  'maxResults': 100 // Number | Limit the returned number of messages, up to a maximum of 100
 };
 
 apiInstance.getWebchatGuestConversationMessages(conversationId, opts)
@@ -424,6 +425,7 @@ apiInstance.getWebchatGuestConversationMessages(conversationId, opts)
  **after** | **String** | If available, get the messages chronologically after the id of this message | [optional]  |
  **before** | **String** | If available, get the messages chronologically before the id of this message | [optional]  |
  **sortOrder** | **String** | Sort order | [optional] [default to ascending]<br />**Values**: ascending, descending |
+ **maxResults** | **Number** | Limit the returned number of messages, up to a maximum of 100 | [optional] [default to 100] |
 {: class="table table-striped"}
 
 ### Return type

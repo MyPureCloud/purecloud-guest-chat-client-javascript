@@ -59,6 +59,7 @@ declare namespace WebChatApi {
 		"after"?: string;
 		"before"?: string;
 		"sortOrder"?: string;
+		"maxResults"?: number;
 	}
 }
 

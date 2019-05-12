@@ -5,7 +5,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 4.1.0
+	 * @version 5.0.0
 	 */
 
 	/**
@@ -204,6 +204,7 @@ class WebChatApi {
 	 * @param {String} opts.after If available, get the messages chronologically after the id of this message
 	 * @param {String} opts.before If available, get the messages chronologically before the id of this message
 	 * @param {Object} opts.sortOrder Sort order (default to ascending)
+	 * @param {Number} opts.maxResults Limit the returned number of messages, up to a maximum of 100 (default to 100)
 	 */
 	getWebchatGuestConversationMessages(conversationId, opts) { 
 		opts = opts || {};
@@ -217,7 +218,7 @@ class WebChatApi {
 			'/api/v2/webchat/guest/conversations/{conversationId}/messages', 
 			'GET', 
 			{ 'conversationId': conversationId }, 
-			{ 'after': opts['after'],'before': opts['before'],'sortOrder': opts['sortOrder'] }, 
+			{ 'after': opts['after'],'before': opts['before'],'sortOrder': opts['sortOrder'],'maxResults': opts['maxResults'] }, 
 			{  }, 
 			{  }, 
 			null, 

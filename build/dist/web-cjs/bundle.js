@@ -1971,7 +1971,7 @@ function isSlowBuffer (obj) {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 4.1.0
+ * @version 5.0.0
  */
 class ApiClient {
 	/**
@@ -2416,8 +2416,6 @@ class ApiClient {
 	 * @param {Array.<String>} authNames An array of authentication method names.
 	 */
 	applyAuthToRequest(request, authNames) {
-		console.log('authNames: ', authNames);
-		console.log('authentications: ', this.authentications);
 		authNames.forEach((authName) => {
 			var auth = this.authentications[authName];
 			switch (auth.type) {
@@ -2500,7 +2498,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '4.1.0' });
+		//request.set({ 'purecloud-sdk': '5.0.0' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -2538,9 +2536,7 @@ class ApiClient {
 		return new Promise((resolve, reject) => {
 			request.end((error, response) => {
 				if (error) {
-					console.log(error);
 					if (!response) {
-						console.log('Response object was not defined!');
 						reject({
 							status: 0,
 							statusText: 'error',
@@ -2627,7 +2623,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 4.1.0
+	 * @version 5.0.0
 	 */
 
 	/**
@@ -2826,6 +2822,7 @@ class WebChatApi {
 	 * @param {String} opts.after If available, get the messages chronologically after the id of this message
 	 * @param {String} opts.before If available, get the messages chronologically before the id of this message
 	 * @param {Object} opts.sortOrder Sort order (default to ascending)
+	 * @param {Number} opts.maxResults Limit the returned number of messages, up to a maximum of 100 (default to 100)
 	 */
 	getWebchatGuestConversationMessages(conversationId, opts) { 
 		opts = opts || {};
@@ -2839,7 +2836,7 @@ class WebChatApi {
 			'/api/v2/webchat/guest/conversations/{conversationId}/messages', 
 			'GET', 
 			{ 'conversationId': conversationId }, 
-			{ 'after': opts['after'],'before': opts['before'],'sortOrder': opts['sortOrder'] }, 
+			{ 'after': opts['after'],'before': opts['before'],'sortOrder': opts['sortOrder'],'maxResults': opts['maxResults'] }, 
 			{  }, 
 			{  }, 
 			null, 
@@ -3005,7 +3002,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 4.1.0
+ * @version 5.0.0
  */
 class platformClient {
 	constructor() {

@@ -2,7 +2,7 @@ import superagent from 'superagent';
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 4.1.0
+ * @version 5.0.0
  */
 class ApiClient {
 	/**
@@ -447,8 +447,6 @@ class ApiClient {
 	 * @param {Array.<String>} authNames An array of authentication method names.
 	 */
 	applyAuthToRequest(request, authNames) {
-		console.log('authNames: ', authNames);
-		console.log('authentications: ', this.authentications);
 		authNames.forEach((authName) => {
 			var auth = this.authentications[authName];
 			switch (auth.type) {
@@ -531,7 +529,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '4.1.0' });
+		//request.set({ 'purecloud-sdk': '5.0.0' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -569,9 +567,7 @@ class ApiClient {
 		return new Promise((resolve, reject) => {
 			request.end((error, response) => {
 				if (error) {
-					console.log(error);
 					if (!response) {
-						console.log('Response object was not defined!');
 						reject({
 							status: 0,
 							statusText: 'error',
