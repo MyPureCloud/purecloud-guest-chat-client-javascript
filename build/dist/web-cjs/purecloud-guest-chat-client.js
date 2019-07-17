@@ -4073,6 +4073,14 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var superagent = _interopDefault(require('superagent'));
 
+var PureCloudRegionHosts = {
+    us_east_1: "mypurecloud.com",  
+    eu_west_1: "mypurecloud.ie",
+    ap_southeast_2: "mypurecloud.com.au", 
+    ap_northeast_1: "mypurecloud.jp",
+    eu_central_1: "mypurecloud.de"
+   }
+
 var global$1 = (typeof global !== "undefined" ? global :
             typeof self !== "undefined" ? self :
             typeof window !== "undefined" ? window : {});
@@ -6040,7 +6048,7 @@ function isSlowBuffer (obj) {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 5.0.0
+ * @version 5.0.1
  */
 class ApiClient {
 	/**
@@ -6567,7 +6575,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '5.0.0' });
+		//request.set({ 'purecloud-sdk': '5.0.1' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -6692,7 +6700,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 5.0.0
+	 * @version 5.0.1
 	 */
 
 	/**
@@ -7071,7 +7079,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 5.0.0
+ * @version 5.0.1
  */
 class platformClient {
 	constructor() {
@@ -7085,6 +7093,11 @@ class platformClient {
 		 * @property {module:purecloud-guest-chat-client/api/WebChatApi}
 		 */
 		this.WebChatApi = WebChatApi;
+		/**
+		 * The PureCloudRegionsHost Object.
+		 * @property {module:purecloud-guest-chat-client/MyPureCloudRegionHost}
+		 */
+		this.PureCloudRegionHosts = PureCloudRegionHosts;
 	}
 }
 

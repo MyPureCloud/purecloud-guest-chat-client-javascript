@@ -1,3 +1,4 @@
+import PureCloudRegionHosts from './PureCloudRegionHosts.js';
 import ApiClient from './ApiClient.js';
 import WebChatApi from './api/WebChatApi.js';
 
@@ -31,7 +32,7 @@ import WebChatApi from './api/WebChatApi.js';
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 5.0.0
+ * @version 5.0.1
  */
 class platformClient {
 	constructor() {
@@ -45,6 +46,11 @@ class platformClient {
 		 * @property {module:purecloud-guest-chat-client/api/WebChatApi}
 		 */
 		this.WebChatApi = WebChatApi;
+		/**
+		 * The PureCloudRegionsHost Object.
+		 * @property {module:purecloud-guest-chat-client/MyPureCloudRegionHost}
+		 */
+		this.PureCloudRegionHosts = PureCloudRegionHosts;
 	}
 }
 

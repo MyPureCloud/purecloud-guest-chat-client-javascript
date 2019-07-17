@@ -29,7 +29,7 @@ For direct use in a browser script:
 
 ```{"language":"html"}
 <!-- Include the CJS SDK -->
-<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/5.0.0/purecloud-guest-chat-client.min.js"></script>
+<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/5.0.1/purecloud-guest-chat-client.min.js"></script>
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
@@ -46,7 +46,7 @@ For direct use in a browser script:
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
-  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/5.0.0/purecloud-guest-chat-client.min.js'], (platformClient) => {
+  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/5.0.1/purecloud-guest-chat-client.min.js'], (platformClient) => {
     console.log(platformClient);
   });
 </script>
@@ -147,7 +147,7 @@ If connecting to a PureCloud environment other than mypurecloud.com (e.g. mypure
 
 ```{"language":"javascript"}
 const client = platformClient.ApiClient.instance;
-client.setEnvironment('mypurecloud.ie');
+client.setEnvironment(platformClient.PureCloudRegionHosts.eu_west_1);
 ```
 
 

@@ -177,9 +177,9 @@ declare namespace Models {
 		"total"?: number;
 		"firstUri"?: string;
 		"selfUri"?: string;
-		"lastUri"?: string;
-		"previousUri"?: string;
 		"nextUri"?: string;
+		"previousUri"?: string;
+		"lastUri"?: string;
 		"pageCount"?: number;
 	}
 	
