@@ -13,7 +13,7 @@ declare class ApiClientClass {
 	setJwt(jwt: string): void;
 	setDebugLog(debugLog: any, maxLines: number): void;
 	setEnvironment(environment: string): void;
-	setPersistSettings(doPersist: boolean, prefix: string): void;
+	setPersistSettings(doPersist: boolean, prefix?: string): void;
 	setReturnExtendedResponses(returnExtended: boolean): void;
 	setStorageKey(storageKey: string): void;
 }
@@ -177,9 +177,9 @@ declare namespace Models {
 		"total"?: number;
 		"firstUri"?: string;
 		"selfUri"?: string;
-		"lastUri"?: string;
-		"previousUri"?: string;
 		"nextUri"?: string;
+		"previousUri"?: string;
+		"lastUri"?: string;
 		"pageCount"?: number;
 	}
 	

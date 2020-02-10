@@ -1979,7 +1979,7 @@ function isSlowBuffer (obj) {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 5.1.0
+ * @version 5.2.0
  */
 class ApiClient {
 	/**
@@ -2506,7 +2506,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '5.1.0' });
+		//request.set({ 'purecloud-sdk': '5.2.0' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -2631,7 +2631,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 5.1.0
+	 * @version 5.2.0
 	 */
 
 	/**
@@ -3010,7 +3010,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 5.1.0
+ * @version 5.2.0
  */
 class platformClient {
 	constructor() {
