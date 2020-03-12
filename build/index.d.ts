@@ -93,11 +93,11 @@ declare namespace Models {
 	}
 	
 	export interface ErrorBody { 
-		"status"?: number;
+		"message"?: string;
 		"code"?: string;
+		"status"?: number;
 		"entityId"?: string;
 		"entityName"?: string;
-		"message"?: string;
 		"messageWithParams"?: string;
 		"messageParams"?: { [key: string]: string; };
 		"contextId"?: string;
@@ -178,8 +178,8 @@ declare namespace Models {
 		"firstUri"?: string;
 		"selfUri"?: string;
 		"nextUri"?: string;
-		"previousUri"?: string;
 		"lastUri"?: string;
+		"previousUri"?: string;
 		"pageCount"?: number;
 	}
 	

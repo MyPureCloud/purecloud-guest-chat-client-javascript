@@ -9,12 +9,16 @@ var PureCloudRegionHosts = {
     eu_west_1: "mypurecloud.ie",
     ap_southeast_2: "mypurecloud.com.au", 
     ap_northeast_1: "mypurecloud.jp",
-    eu_central_1: "mypurecloud.de"
+    eu_central_1: "mypurecloud.de",
+    us_west_2: "usw2.pure.cloud",
+    ca_central_1: "cac1.pure.cloud",
+    ap_northeast_2: "apne2.pure.cloud",
+    eu_west_2: "euw2.pure.cloud"
    }
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 5.2.0
+ * @version 5.3.0
  */
 class ApiClient {
 	/**
@@ -541,7 +545,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '5.2.0' });
+		//request.set({ 'purecloud-sdk': '5.3.0' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -666,7 +670,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 5.2.0
+	 * @version 5.3.0
 	 */
 
 	/**
@@ -1045,7 +1049,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 5.2.0
+ * @version 5.3.0
  */
 class platformClient {
 	constructor() {
