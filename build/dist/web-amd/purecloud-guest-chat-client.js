@@ -16,7 +16,7 @@ define(['superagent'], function (superagent) { 'use strict';
 
    /**
     * @module purecloud-guest-chat-client/ApiClient
-    * @version 5.3.0
+    * @version 5.3.1
     */
    class ApiClient {
    	/**
@@ -166,10 +166,8 @@ define(['superagent'], function (superagent) { 'use strict';
    	 */
    	_saveSettings(opts) {
    		try {
-   			if (opts.apiKey) {
-   				this.authData.apiKey = opts.apiKey;
-   				this.authentications['Guest Chat JWT'].apiKey = opts.apiKey;
-   			}
+   			this.authData.apiKey = opts.apiKey;
+   			this.authentications['Guest Chat JWT'].apiKey = opts.apiKey;
 
    			if (opts.state) {
    				this.authData.state = opts.state;
@@ -543,7 +541,7 @@ define(['superagent'], function (superagent) { 'use strict';
 
    		// set header parameters
    		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-   		//request.set({ 'purecloud-sdk': '5.3.0' });
+   		//request.set({ 'purecloud-sdk': '5.3.1' });
 
    		// set request timeout
    		request.timeout(this.timeout);
@@ -668,7 +666,7 @@ define(['superagent'], function (superagent) { 'use strict';
    	/**
    	 * WebChat service.
    	 * @module purecloud-guest-chat-client/api/WebChatApi
-   	 * @version 5.3.0
+   	 * @version 5.3.1
    	 */
 
    	/**
@@ -1047,7 +1045,7 @@ define(['superagent'], function (superagent) { 'use strict';
     * </pre>
     * </p>
     * @module purecloud-guest-chat-client/index
-    * @version 5.3.0
+    * @version 5.3.1
     */
    class platformClient {
    	constructor() {

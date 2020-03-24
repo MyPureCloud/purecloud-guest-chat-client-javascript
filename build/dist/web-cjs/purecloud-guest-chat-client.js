@@ -6081,7 +6081,7 @@ function isSlowBuffer (obj) {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 5.3.0
+ * @version 5.3.1
  */
 class ApiClient {
 	/**
@@ -6231,10 +6231,8 @@ class ApiClient {
 	 */
 	_saveSettings(opts) {
 		try {
-			if (opts.apiKey) {
-				this.authData.apiKey = opts.apiKey;
-				this.authentications['Guest Chat JWT'].apiKey = opts.apiKey;
-			}
+			this.authData.apiKey = opts.apiKey;
+			this.authentications['Guest Chat JWT'].apiKey = opts.apiKey;
 
 			if (opts.state) {
 				this.authData.state = opts.state;
@@ -6608,7 +6606,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '5.3.0' });
+		//request.set({ 'purecloud-sdk': '5.3.1' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -6733,7 +6731,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 5.3.0
+	 * @version 5.3.1
 	 */
 
 	/**
@@ -7112,7 +7110,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 5.3.0
+ * @version 5.3.1
  */
 class platformClient {
 	constructor() {
