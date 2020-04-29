@@ -107,6 +107,10 @@ declare namespace Models {
 	
 	export interface GuestMemberInfo { 
 		"displayName": string;
+		"firstName"?: string;
+		"lastName"?: string;
+		"email"?: string;
+		"phoneNumber"?: string;
 		"avatarImageUrl"?: string;
 		"customFields"?: { [key: string]: string; };
 	}
@@ -161,6 +165,10 @@ declare namespace Models {
 	export interface WebChatMemberInfo { 
 		"id"?: string;
 		"displayName"?: string;
+		"firstName"?: string;
+		"lastName"?: string;
+		"email"?: string;
+		"phoneNumber"?: string;
 		"avatarImageUrl"?: string;
 		"role": string;
 		"joinDate"?: string;
@@ -176,10 +184,10 @@ declare namespace Models {
 		"pageNumber"?: number;
 		"total"?: number;
 		"firstUri"?: string;
-		"selfUri"?: string;
-		"nextUri"?: string;
 		"previousUri"?: string;
 		"lastUri"?: string;
+		"selfUri"?: string;
+		"nextUri"?: string;
 		"pageCount"?: number;
 	}
 	
