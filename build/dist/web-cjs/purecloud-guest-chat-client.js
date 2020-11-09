@@ -155,7 +155,7 @@ function fromByteArray (uint8) {
 }
 
 },{}],3:[function(require,module,exports){
-(function (Buffer){
+(function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -1934,8 +1934,9 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-}).call(this,require("buffer").Buffer)
+}).call(this)}).call(this,require("buffer").Buffer)
 },{"base64-js":2,"buffer":3,"ieee754":4}],4:[function(require,module,exports){
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -4067,7 +4068,7 @@ exports.cleanHeader = function(header, changesOrigin){
 };
 
 },{}],"platformClient":[function(require,module,exports){
-(function (global,Buffer){
+(function (global,Buffer){(function (){
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -6053,7 +6054,7 @@ function isSlowBuffer (obj) {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 5.4.3
+ * @version 5.4.4
  */
 class ApiClient {
 	/**
@@ -6578,7 +6579,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '5.4.3' });
+		//request.set({ 'purecloud-sdk': '5.4.4' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -6703,7 +6704,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 5.4.3
+	 * @version 5.4.4
 	 */
 
 	/**
@@ -7082,7 +7083,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 5.4.3
+ * @version 5.4.4
  */
 class platformClient {
 	constructor() {
@@ -7109,5 +7110,5 @@ var index = new platformClient();
 
 module.exports = index;
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
 },{"buffer":3,"fs":1,"superagent":7}]},{},[]);
