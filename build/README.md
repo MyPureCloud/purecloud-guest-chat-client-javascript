@@ -6,10 +6,13 @@ title: Guest Chat Client - JavaScript
 
 [![GitHub release](https://img.shields.io/github/release/mypurecloud/purecloud-guest-chat-client-javascript.svg)]()
 [![npm](https://img.shields.io/npm/v/purecloud-guest-chat-client.svg)](https://www.npmjs.com/package/purecloud-guest-chat-client)
+[![Release Notes Badge](https://developer.mypurecloud.com/images/sdk-release-notes.png)](https://github.com/MyPureCloud/purecloud-guest-chat-client-javascript/blob/master/releaseNotes.md)
+
+[Platform release notes](releaseNotes.md)
 
 * **Documentation** https://developer.mypurecloud.com/api/rest/client-libraries/javascript-guest/
 * **Source** https://github.com/MyPureCloud/purecloud-guest-chat-client-javascript
-* **Guest chat documentation** https://developerpreview.inindca.com/api/webchat/guestchat.html (preview documentation)
+* **Guest chat documentation** https://developer.mypurecloud.com/api/webchat/guestchat.html
 
 ## CommonJS
 
@@ -28,7 +31,7 @@ For direct use in a browser script:
 
 ```{"language":"html"}
 <!-- Include the CJS SDK -->
-<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/5.4.4/purecloud-guest-chat-client.min.js"></script>
+<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/6.0.0/purecloud-guest-chat-client.min.js"></script>
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
@@ -45,7 +48,7 @@ For direct use in a browser script:
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
-  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/5.4.4/purecloud-guest-chat-client.min.js'], (platformClient) => {
+  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/6.0.0/purecloud-guest-chat-client.min.js'], (platformClient) => {
     console.log(platformClient);
   });
 </script>
@@ -55,7 +58,7 @@ For direct use in a browser script:
 
 The node package's [package.json](https://github.com/MyPureCloud/purecloud-guest-chat-client-javascript/blob/master/build/package.json) file contains the following entry points for use with various packaging systems:
 
-* **jsnext:main**
+* **jsnext:main** and **module**
   * Entry point: src/purecloud-guest-chat-client/index.js
   * The main ES6 class in the source code
 * **main**
@@ -64,6 +67,13 @@ The node package's [package.json](https://github.com/MyPureCloud/purecloud-guest
 * **browser**
   * Entry point: dist/web-cjs/purecloud-guest-chat-client.min.js
   * The [Browserify](http://browserify.org/)ed CJS module for standalone use in a browser
+
+## Using the "latest" SDK
+
+Want your app to always use the most recent version of the SDK? To do this, simply use `latest` instead of the version number: 
+
+* CJS: `https://sdk-cdn.mypurecloud.com/javascript-guest/latest/purecloud-guest-chat-client.min.js`
+* AMD: `https://sdk-cdn.mypurecloud.com/javascript-guest/amd/latest/purecloud-guest-chat-client.min.js`
 
 
 ## Using the SDK

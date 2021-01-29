@@ -1,10 +1,11 @@
 {
   "name": "purecloud-guest-chat-client",
-  "version": "5.4.4",
+  "version": "6.0.0",
   "description": "A JavaScript library to interface with the PureCloud Platform API",
   "license": "MIT",
   "main": "dist/node/purecloud-guest-chat-client.js",
   "types": "index.d.ts",
+  "module": "src/purecloud-guest-chat-client/index.js",
   "jsnext:main": "src/purecloud-guest-chat-client/index.js",
   "browser": "dist/web-cjs/purecloud-guest-chat-client.min.js",
   "files": [

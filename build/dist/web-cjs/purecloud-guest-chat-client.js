@@ -128,9 +128,7 @@ function fromByteArray (uint8) {
 
   // go through the array every three bytes, we'll deal with trailing stuff later
   for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
-    parts.push(encodeChunk(
-      uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)
-    ))
+    parts.push(encodeChunk(uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)))
   }
 
   // pad the end with zeros, but make sure to not forget the extra bytes
@@ -6054,7 +6052,7 @@ function isSlowBuffer (obj) {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 5.4.4
+ * @version 6.0.0
  */
 class ApiClient {
 	/**
@@ -6579,7 +6577,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '5.4.4' });
+		//request.set({ 'purecloud-sdk': '6.0.0' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -6704,7 +6702,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 5.4.4
+	 * @version 6.0.0
 	 */
 
 	/**
@@ -7083,7 +7081,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 5.4.4
+ * @version 6.0.0
  */
 class platformClient {
 	constructor() {
