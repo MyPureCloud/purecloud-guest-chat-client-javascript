@@ -1,6 +1,4 @@
 require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-
-},{}],2:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -152,7 +150,7 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -1933,7 +1931,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":2,"buffer":3,"ieee754":4}],4:[function(require,module,exports){
+},{"base64-js":1,"buffer":2,"ieee754":3}],3:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -2020,7 +2018,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -2197,7 +2195,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 function Agent() {
   this._defaults = [];
 }
@@ -2219,7 +2217,7 @@ Agent.prototype._setDefaults = function(req) {
 
 module.exports = Agent;
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
  * Root reference for iframes.
  */
@@ -3141,7 +3139,7 @@ request.put = function(url, data, fn) {
   return req;
 };
 
-},{"./agent-base":6,"./is-object":8,"./request-base":9,"./response-base":10,"component-emitter":5}],8:[function(require,module,exports){
+},{"./agent-base":5,"./is-object":7,"./request-base":8,"./response-base":9,"component-emitter":4}],7:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3158,7 +3156,7 @@ function isObject(obj) {
 
 module.exports = isObject;
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3854,7 +3852,7 @@ RequestBase.prototype._setTimeouts = function() {
   }
 };
 
-},{"./is-object":8}],10:[function(require,module,exports){
+},{"./is-object":7}],9:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3992,7 +3990,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
     this.unprocessableEntity = 422 == status;
 };
 
-},{"./utils":11}],11:[function(require,module,exports){
+},{"./utils":10}],10:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6052,7 +6050,7 @@ function isSlowBuffer (obj) {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 6.0.0
+ * @version 6.0.1
  */
 class ApiClient {
 	/**
@@ -6415,13 +6413,6 @@ class ApiClient {
 	 * @returns {Boolean} <code>true</code> if <code>param</code> represents a file. 
 	 */
 	isFileParam(param) {
-		// fs.ReadStream in Node.js (but not in runtime like browserify)
-		if (typeof window === 'undefined' &&
-				typeof require === 'function' &&
-				require('fs') &&
-				param instanceof require('fs').ReadStream) {
-			return true;
-		}
 		// Buffer in Node.js
 		if (typeof Buffer === 'function' && param instanceof Buffer) {
 			return true;
@@ -6577,7 +6568,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '6.0.0' });
+		//request.set({ 'purecloud-sdk': '6.0.1' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -6702,7 +6693,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 6.0.0
+	 * @version 6.0.1
 	 */
 
 	/**
@@ -7081,7 +7072,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 6.0.0
+ * @version 6.0.1
  */
 class platformClient {
 	constructor() {
@@ -7109,4 +7100,4 @@ var index = new platformClient();
 module.exports = index;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"buffer":3,"fs":1,"superagent":7}]},{},[]);
+},{"buffer":2,"superagent":6}]},{},[]);

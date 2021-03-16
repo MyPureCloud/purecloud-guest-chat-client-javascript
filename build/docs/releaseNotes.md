@@ -1,9 +1,7 @@
-Platform API version: 4430
+Platform API version: 4532
 
 
-# SDK Changes
-
-* DEVENGAGE-413 - Added `module` entry point
+No functional change. Building to test the pipeline.
 
 # Major Changes (0 changes)
 

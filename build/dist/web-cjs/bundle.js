@@ -1983,7 +1983,7 @@ function isSlowBuffer (obj) {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 6.0.0
+ * @version 6.0.1
  */
 class ApiClient {
 	/**
@@ -2346,13 +2346,6 @@ class ApiClient {
 	 * @returns {Boolean} <code>true</code> if <code>param</code> represents a file. 
 	 */
 	isFileParam(param) {
-		// fs.ReadStream in Node.js (but not in runtime like browserify)
-		if (typeof window === 'undefined' &&
-				typeof require === 'function' &&
-				require('fs') &&
-				param instanceof require('fs').ReadStream) {
-			return true;
-		}
 		// Buffer in Node.js
 		if (typeof Buffer === 'function' && param instanceof Buffer) {
 			return true;
@@ -2508,7 +2501,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '6.0.0' });
+		//request.set({ 'purecloud-sdk': '6.0.1' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -2633,7 +2626,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 6.0.0
+	 * @version 6.0.1
 	 */
 
 	/**
@@ -3012,7 +3005,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 6.0.0
+ * @version 6.0.1
  */
 class platformClient {
 	constructor() {
