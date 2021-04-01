@@ -1,7 +1,5 @@
-Platform API version: 4532
+Platform API version: 4585
 
-
-No functional change. Building to test the pipeline.
 
 # Major Changes (0 changes)
 
