@@ -1,5 +1,7 @@
-Platform API version: 4585
+Platform API version: 4658
 
+
+Changes to logging and SDK configuration. See https://developer.genesys.cloud/api/rest/client-libraries/ for more information
 
 # Major Changes (0 changes)
 
