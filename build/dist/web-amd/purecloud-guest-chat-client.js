@@ -14,9 +14,358 @@ define(['superagent'], function (superagent) { 'use strict';
        eu_west_2: "euw2.pure.cloud"
       }
 
+   const logLevels = {
+   	levels: {
+   		none: 0,
+   		error: 1,
+   		debug: 2,
+   		trace: 3,
+   	},
+   };
+
+   const logLevelEnum = {
+   	level: {
+   		LNone: 'none',
+   		LError: 'error',
+   		LDebug: 'debug',
+   		LTrace: 'trace',
+   	},
+   };
+
+   const logFormatEnum = {
+   	formats: {
+   		JSON: 'json',
+   		TEXT: 'text',
+   	},
+   };
+
+   class Logger {
+   	get logLevelEnum() {
+   		return logLevelEnum;
+   	}
+
+   	get logFormatEnum() {
+   		return logFormatEnum;
+   	}
+
+   	constructor() {
+   		this.log_level = logLevelEnum.level.LNone;
+   		this.log_format = logFormatEnum.formats.TEXT;
+   		this.log_to_console = true;
+   		this.log_file_path;
+   		this.log_response_body = false;
+   		this.log_request_body = false;
+
+   		this.setLogger();
+   	}
+
+   	setLogger() {
+   		if(typeof window === 'undefined') {
+   			const winston = require('winston');
+   			this.logger = winston.createLogger({
+   				levels: logLevels.levels,
+   				level: this.log_level,
+   			});
+   			if (this.log_file_path && this.log_file_path !== '') {
+   				if (this.log_format === logFormatEnum.formats.JSON) {
+   					this.logger.add(new winston.transports.File({ format: winston.format.json(), filename: this.log_file_path }));
+   				} else {
+   					this.logger.add(
+   						new winston.transports.File({
+   							format: winston.format.combine(
+   								winston.format((info) => {
+   									info.level = info.level.toUpperCase();
+   									return info;
+   								})(),
+   								winston.format.simple()
+   							),
+   							filename: this.log_file_path,
+   						})
+   					);
+   				}
+   			}
+   			if (this.log_to_console) {
+   				if (this.log_format === logFormatEnum.formats.JSON) {
+   					this.logger.add(new winston.transports.Console({ format: winston.format.json() }));
+   				} else {
+   					this.logger.add(
+   						new winston.transports.Console({
+   							format: winston.format.combine(
+   								winston.format((info) => {
+   									info.level = info.level.toUpperCase();
+   									return info;
+   								})(),
+   								winston.format.simple()
+   							),
+   						})
+   					);
+   				}
+   			}
+   		}
+   	}
+
+   	log(level, statusCode, method, url, requestHeaders, responseHeaders, requestBody, responseBody) {
+   		var content = this.formatLog(level, statusCode, method, url, requestHeaders, responseHeaders, requestBody, responseBody);
+   		if (typeof window !== 'undefined') {
+   			var shouldLog = this.calculateLogLevel(level);
+   			if (shouldLog > 0 && this.log_to_console === true) {
+   				if(this.log_format === this.logFormatEnum.formats.JSON) {
+   					console.log(content);
+   				} else {
+   			 		console.log(`${level.toUpperCase()}: ${content}`);
+   				}
+   			}
+   		} else {
+   			if (this.logger.transports.length > 0) this.logger.log(level, content);
+   		}
+   	}
+
+   	calculateLogLevel(level) {
+   		switch (this.log_level) {
+   			case this.logLevelEnum.level.LError:
+   				if (level !== this.logLevelEnum.level.LError) {
+   					return -1;
+   				}
+   				return 1;
+   			case this.logLevelEnum.level.LDebug:
+   				if (level === this.logLevelEnum.level.LTrace) {
+   					return -1;
+   				}
+   				return 1;
+   			case this.logLevelEnum.level.LTrace:
+   				return 1;
+   			default:
+   				return -1;
+   		}
+   	}
+
+   	formatLog(level, statusCode, method, url, requestHeaders, responseHeaders, requestBody, responseBody) {
+   		var result;
+   		if (requestHeaders) requestHeaders['Authorization'] = '[REDACTED]';
+   		if (!this.log_request_body) requestBody = undefined;
+   		if (!this.log_response_body) responseBody = undefined;
+   		if (this.log_format && this.log_format === logFormatEnum.formats.JSON) {
+   			result = {
+   				level: level,
+   				date: new Date().toISOString(),
+   				method: method,
+   				url: decodeURIComponent(url),
+   				correlationId: responseHeaders ? (responseHeaders['inin-correlation-id'] ? responseHeaders['inin-correlation-id'] : '') : '',
+   				statusCode: statusCode,
+   			};
+   			if (requestHeaders) result.requestHeaders = requestHeaders;
+   			if (responseHeaders) result.responseHeaders = responseHeaders;
+   			if (requestBody) result.requestBody = requestBody;
+   			if (responseBody) result.responseBody = responseBody;
+   		} else {
+   			result = `${new Date().toISOString()}
+=== REQUEST === 
+${this.formatValue('URL', decodeURIComponent(url))}${this.formatValue('Method', method)}${this.formatValue(
+				'Headers',
+				this.formatHeaderString(requestHeaders)
+			)}${this.formatValue('Body', requestBody ? JSON.stringify(requestBody, null, 2) : '')}
+=== RESPONSE ===
+${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.formatHeaderString(responseHeaders))}${this.formatValue(
+				'CorrelationId',
+				responseHeaders ? (responseHeaders['inin-correlation-id'] ? responseHeaders['inin-correlation-id'] : '') : ''
+			)}${this.formatValue('Body', responseBody ? JSON.stringify(responseBody, null, 2) : '')}`;
+   		}
+
+   		return result;
+   	}
+
+   	formatHeaderString(headers) {
+   		var headerString = '';
+   		if (!headers) return headerString;
+   		for (const [key, value] of Object.entries(headers)) {
+   			headerString += `\n\t${key}: ${value}`;
+   		}
+   		return headerString;
+   	}
+
+   	formatValue(key, value) {
+   		if (!value || value === '' || value === '{}') return '';
+   		return `${key}: ${value}\n`;
+   	}
+
+   	getLogLevel(level) {
+   		switch (level) {
+   			case 'error':
+   				return logLevelEnum.level.LError;
+   			case 'debug':
+   				return logLevelEnum.level.LDebug;
+   			case 'trace':
+   				return logLevelEnum.level.LTrace;
+   			default:
+   				return logLevelEnum.level.LNone;
+   		}
+   	}
+
+   	getLogFormat(format) {
+   		switch (format) {
+   			case 'json':
+   				return logFormatEnum.formats.JSON;
+   			default:
+   				return logFormatEnum.formats.TEXT;
+   		}
+   	}
+   }
+
+   class Configuration {
+   	/**
+   	 * Singleton getter
+   	 */
+   	get instance() {
+   		return Configuration.instance;
+   	}
+
+   	/**
+   	 * Singleton setter
+   	 */
+   	set instance(value) {
+   		Configuration.instance = value;
+   	}
+
+   	constructor() {
+   		if (!Configuration.instance) {
+   			Configuration.instance = this;
+   		}
+
+   		if (typeof window !== 'undefined') {
+   			this.configPath = '';
+   		} else {
+   			const os = require('os');
+   			const path = require('path');
+   			this.configPath = path.join(os.homedir(), '.genesyscloudjavascript-guest', 'config');
+   		}
+
+   		this.live_reload_config = true;
+   		this.host;
+   		this.environment;
+   		this.basePath;
+   		this.authUrl;
+   		this.config;
+   		this.logger = new Logger();
+   		this.setEnvironment();
+   		this.liveLoadConfig();
+   	}
+
+   	liveLoadConfig() {
+   		// If in browser, don't read config file, use default values
+   		if (typeof window !== 'undefined') {
+   			this.configPath = '';
+   			return;
+   		}
+
+   		this.updateConfigFromFile();
+
+   		if (this.live_reload_config && this.live_reload_config === true) {
+   			try {
+   				const fs = require('fs');
+   				fs.watchFile(this.configPath, { persistent: false }, (eventType, filename) => {
+   					this.updateConfigFromFile();
+   					if (!this.live_reload_config) {
+   						fs.unwatchFile(this.configPath);
+   					}
+   				});
+   			} catch (err) {
+   				// do nothing
+   			}
+   		}
+   	}
+
+   	setConfigPath(path) {
+   		if (path && path !== this.configPath) {
+   			this.configPath = path;
+   			this.liveLoadConfig();
+   		}
+   	}
+
+   	updateConfigFromFile() {
+   		const ConfigParser = require('configparser');
+   		var configparser = new ConfigParser();
+
+   		try {
+   			configparser.read(this.configPath); // If no error catched, indicates it's INI format
+   			this.config = configparser;
+   		} catch (error) {
+   			if (error.name && error.name === 'MissingSectionHeaderError') {
+   				// Not INI format, see if it's JSON format
+   				const fs = require('fs');
+   				var configData = fs.readFileSync(this.configPath, 'utf8');
+   				this.config = {
+   					_sections: JSON.parse(configData), // To match INI data format
+   				};
+   			}
+   		}
+
+   		if (this.config) this.updateConfigValues();
+   	}
+
+   	updateConfigValues() {
+   		this.logger.log_level = this.logger.getLogLevel(this.getConfigString('logging', 'log_level'));
+   		this.logger.log_format = this.logger.getLogFormat(this.getConfigString('logging', 'log_format'));
+   		this.logger.log_to_console =
+   			this.getConfigBoolean('logging', 'log_to_console') !== undefined
+   				? this.getConfigBoolean('logging', 'log_to_console')
+   				: this.logger.log_to_console;
+   		this.logger.log_file_path =
+   			this.getConfigString('logging', 'log_file_path') !== undefined
+   				? this.getConfigString('logging', 'log_file_path')
+   				: this.logger.log_file_path;
+   		this.logger.log_response_body =
+   			this.getConfigBoolean('logging', 'log_response_body') !== undefined
+   				? this.getConfigBoolean('logging', 'log_response_body')
+   				: this.logger.log_response_body;
+   		this.logger.log_request_body =
+   			this.getConfigBoolean('logging', 'log_request_body') !== undefined
+   				? this.getConfigBoolean('logging', 'log_request_body')
+   				: this.logger.log_request_body;
+   		this.live_reload_config =
+   			this.getConfigBoolean('general', 'live_reload_config') !== undefined
+   				? this.getConfigBoolean('general', 'live_reload_config')
+   				: this.live_reload_config;
+   		this.host = this.getConfigString('general', 'host') !== undefined ? this.getConfigString('general', 'host') : this.host;
+
+   		this.setEnvironment();
+
+   		// Update logging configs
+   		this.logger.setLogger();
+   	}
+
+   	setEnvironment(env) {
+   		// Default value
+   		if (env) this.environment = env;
+   		else this.environment = this.host ? this.host : 'mypurecloud.com';
+
+   		// Strip trailing slash
+   		this.environment = this.environment.replace(/\/+$/, '');
+
+   		// Strip protocol and subdomain
+   		if (this.environment.startsWith('https://')) this.environment = this.environment.substring(8);
+   		if (this.environment.startsWith('http://')) this.environment = this.environment.substring(7);
+   		if (this.environment.startsWith('api.')) this.environment = this.environment.substring(4);
+
+   		this.basePath = `https://api.${this.environment}`;
+   		this.authUrl = `https://login.${this.environment}`;
+   	}
+
+   	getConfigString(section, key) {
+   		if (this.config._sections[section]) return this.config._sections[section][key];
+   	}
+
+   	getConfigBoolean(section, key) {
+   		if (this.config._sections[section] && this.config._sections[section][key] !== undefined) {
+   			if (typeof this.config._sections[section][key] === 'string') {
+   				return this.config._sections[section][key] === 'true';
+   			} else return this.config._sections[section][key];
+   		}
+   	}
+   }
+
    /**
     * @module purecloud-guest-chat-client/ApiClient
-    * @version 7.1.0
+    * @version 7.2.0
     */
    class ApiClient {
    	/**
@@ -94,6 +443,11 @@ define(['superagent'], function (superagent) { 'use strict';
    		}
 
    		/**
+   		 * Create configuration instance for ApiClient and prepare logger.
+   		 */
+   		this.config = new Configuration();
+
+   		/**
    		 * The base URL against which to resolve every API call's (relative) path.
    		 * @type {String}
    		 * @default https://api.mypurecloud.com
@@ -133,16 +487,6 @@ define(['superagent'], function (superagent) { 'use strict';
    	}
 
    	/**
-   	 * @description Sets the debug log to enable debug logging
-   	 * @param {log} debugLog - In most cases use `console.log`
-   	 * @param {integer} maxLines - (optional) The max number of lines to write to the log. Must be > 0.
-   	 */
-   	setDebugLog(debugLog, maxLines) {
-   		this.debugLog = debugLog;
-   		this.debugLogMaxLines = (maxLines && maxLines > 0) ? maxLines : undefined;
-   	}
-
-   	/**
    	 * @description If set to `true`, the response object will contain additional information about the HTTP response. When `false` (default) only the body object will be returned.
    	 * @param {boolean} returnExtended - `true` to return extended responses
    	 */
@@ -158,7 +502,6 @@ define(['superagent'], function (superagent) { 'use strict';
    	setPersistSettings(doPersist, prefix) {
    		this.persistSettings = doPersist;
    		this.settingsPrefix = prefix ? prefix.replace(/\W+/g, '_') : 'purecloud';
-   		this._debugTrace(`this.settingsPrefix=${this.settingsPrefix}`);
    	}
 
    	/**
@@ -183,7 +526,6 @@ define(['superagent'], function (superagent) { 'use strict';
 
    			// Ensure we can access local storage
    			if (!this.hasLocalStorage) {
-   				this._debugTrace('Warning: Cannot access local storage. Settings will not be saved.');
    				return;
    			}
 
@@ -193,7 +535,6 @@ define(['superagent'], function (superagent) { 'use strict';
 
    			// Save updated auth data
    			localStorage.setItem(`${this.settingsPrefix}_auth_data`, JSON.stringify(tempData));
-   			this._debugTrace('Auth data saved to local storage');
    		} catch (e) {
    			console.error(e);
    		}
@@ -208,7 +549,6 @@ define(['superagent'], function (superagent) { 'use strict';
 
    		// Ensure we can access local storage
    		if (!this.hasLocalStorage) {
-   			this._debugTrace('Warning: Cannot access local storage. Settings will not be loaded.');
    			return;
    		}
 
@@ -228,24 +568,7 @@ define(['superagent'], function (superagent) { 'use strict';
    	 * @param {string} environment - (Optional, default "mypurecloud.com") Environment the session use, e.g. mypurecloud.ie, mypurecloud.com.au, etc.
    	 */
    	setEnvironment(environment) {
-   		if (!environment)
-   			environment = 'mypurecloud.com';
-
-   		// Strip trailing slash
-   		environment = environment.replace(/\/+$/, '');
-
-   		// Strip protocol and subdomain
-   		if (environment.startsWith('https://'))
-   			environment = environment.substring(8);
-   		if (environment.startsWith('http://'))
-   			environment = environment.substring(7);
-   		if (environment.startsWith('api.'))
-   			environment = environment.substring(4);
-
-   		// Set vars
-   		this.environment = environment;
-   		this.basePath = `https://api.${environment}`;
-   		this.authUrl = `https://login.${environment}`;
+   		this.config.setEnvironment(environment);
    	}
 
    	/**
@@ -302,7 +625,7 @@ define(['superagent'], function (superagent) { 'use strict';
    	 */
    	_buildAuthUrl(path, query) {
    		if (!query) query = {};
-   		return Object.keys(query).reduce((url, key) => !query[key] ? url : `${url}&${key}=${query[key]}`, `${this.authUrl}/${path}?`);
+   		return Object.keys(query).reduce((url, key) => !query[key] ? url : `${url}&${key}=${query[key]}`, `${this.config.authUrl}/${path}?`);
    	}
 
    	/**
@@ -331,7 +654,7 @@ define(['superagent'], function (superagent) { 'use strict';
    		if (!path.match(/^\//)) {
    			path = `/${path}`;
    		}
-   		var url = this.basePath + path;
+   		var url = this.config.basePath + path;
    		url = url.replace(/\{([\w-]+)\}/g, (fullMatch, key) => {
    			var value;
    			if (pathParams.hasOwnProperty(key)) {
@@ -516,23 +839,6 @@ define(['superagent'], function (superagent) { 'use strict';
    			request.proxy(this.proxy);
    		}
 
-   		if(this.debugLog){
-   			var trace = `[REQUEST] ${httpMethod} ${url}`;
-   			if(pathParams && Object.keys(pathParams).count > 0 && pathParams[Object.keys(pathParams)[0]]){
-   				trace += `\nPath Params: ${JSON.stringify(pathParams)}`;
-   			}
-
-   			if(queryParams && Object.keys(queryParams).count > 0 && queryParams[Object.keys(queryParams)[0]]){
-   				trace += `\nQuery Params: ${JSON.stringify(queryParams)}`;
-   			}
-
-   			if(bodyParam){
-   				trace += `\nnBody: ${JSON.stringify(bodyParam)}`;
-   			}
-
-   			this._debugTrace(trace);
-   		}
-
    		// apply authentications
    		this.applyAuthToRequest(request, authNames);
 
@@ -541,7 +847,7 @@ define(['superagent'], function (superagent) { 'use strict';
 
    		// set header parameters
    		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-   		//request.set({ 'purecloud-sdk': '7.1.0' });
+   		//request.set({ 'purecloud-sdk': '7.2.0' });
 
    		// set request timeout
    		request.timeout(this.timeout);
@@ -603,23 +909,22 @@ define(['superagent'], function (superagent) { 'use strict';
    				} : response.body ? response.body : response.text;
 
    				// Debug logging
-   				if (this.debugLog) {
-   					var trace = `[RESPONSE] ${response.status}: ${httpMethod} ${url}`;
-   					if (response.headers)
-   						trace += `\ninin-correlation-id: ${response.headers['inin-correlation-id']}`;
-   					if (response.body)
-   						trace += `\nBody: ${JSON.stringify(response.body,null,2)}`;
-
-   					// Log trace message
-   					this._debugTrace(trace);
-
-   					// Log stack trace
-   					if (error)
-   						this._debugTrace(error);
-   				}
+   				this.config.logger.log('trace', response.statusCode, httpMethod, url, request.header, response.headers, bodyParam, undefined);
+   				this.config.logger.log('debug', response.statusCode, httpMethod, url, request.header, undefined, bodyParam, undefined);
 
    				// Resolve promise
    				if (error) {
+   					// Log error
+   					this.config.logger.log(
+   						'error',
+   						response.statusCode,
+   						httpMethod,
+   						url,
+   						request.header,
+   						response.headers,
+   						bodyParam,
+   						response.body
+   					);
    					reject(data);
    				} else {
    					resolve(data);
@@ -627,46 +932,13 @@ define(['superagent'], function (superagent) { 'use strict';
    			});
    		});
    	}
-
-   	/**
-   	 * @description Parses an ISO-8601 string representation of a date value.
-   	 * @param {String} str The date value as a string.
-   	 * @returns {Date} The parsed date object.
-   	 */
-   	parseDate(str) {
-   		return new Date(str.replace(/T/i, ' '));
-   	}
-
-   	/**
-   	 * @description Logs to the debug log
-   	 * @param {String} str The date value as a string.
-   	 * @returns {Date} The parsed date object.
-   	 */
-   	_debugTrace(trace) {
-   		if (!this.debugLog) return;
-
-   		if (typeof(trace) === 'string') {
-   			// Truncate
-   			var truncTrace = '';
-   			var lines = trace.split('\n');
-   			if (this.debugLogMaxLines && lines.length > this.debugLogMaxLines) {
-   				for  (var i = 0; i < this.debugLogMaxLines; i++) {
-   					truncTrace += `${lines[i]}\n`;
-   				}
-   				truncTrace += '...response truncated...';
-   				trace = truncTrace;
-   			}
-   		}
-
-   		this.debugLog(trace);
-   	}
    }
 
    class WebChatApi {
    	/**
    	 * WebChat service.
    	 * @module purecloud-guest-chat-client/api/WebChatApi
-   	 * @version 7.1.0
+   	 * @version 7.2.0
    	 */
 
    	/**
@@ -1045,7 +1317,7 @@ define(['superagent'], function (superagent) { 'use strict';
     * </pre>
     * </p>
     * @module purecloud-guest-chat-client/index
-    * @version 7.1.0
+    * @version 7.2.0
     */
    class platformClient {
    	constructor() {
