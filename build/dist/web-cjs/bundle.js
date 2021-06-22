@@ -5,16 +5,18 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var superagent = _interopDefault(require('superagent'));
 
 var PureCloudRegionHosts = {
-    us_east_1: "mypurecloud.com",  
-    eu_west_1: "mypurecloud.ie",
-    ap_southeast_2: "mypurecloud.com.au", 
-    ap_northeast_1: "mypurecloud.jp",
-    eu_central_1: "mypurecloud.de",
-    us_west_2: "usw2.pure.cloud",
-    ca_central_1: "cac1.pure.cloud",
-    ap_northeast_2: "apne2.pure.cloud",
-    eu_west_2: "euw2.pure.cloud"
-   }
+	us_east_1: 'mypurecloud.com',
+	eu_west_1: 'mypurecloud.ie',
+	ap_southeast_2: 'mypurecloud.com.au',
+	ap_northeast_1: 'mypurecloud.jp',
+	eu_central_1: 'mypurecloud.de',
+	us_west_2: 'usw2.pure.cloud',
+	ca_central_1: 'cac1.pure.cloud',
+	ap_northeast_2: 'apne2.pure.cloud',
+	eu_west_2: 'euw2.pure.cloud',
+	ap_south_1: 'aps1.pure.cloud',
+	us_east_2: 'use2.us-gov-pure.cloud',
+};
 
 var global$1 = (typeof global !== "undefined" ? global :
             typeof self !== "undefined" ? self :
@@ -2281,7 +2283,7 @@ class Configuration {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 7.2.0
+ * @version 8.0.0
  */
 class ApiClient {
 	/**
@@ -2756,7 +2758,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '7.2.0' });
+		//request.set({ 'purecloud-sdk': '8.0.0' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -2847,7 +2849,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 7.2.0
+	 * @version 8.0.0
 	 */
 
 	/**
@@ -3226,7 +3228,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 7.2.0
+ * @version 8.0.0
  */
 class platformClient {
 	constructor() {

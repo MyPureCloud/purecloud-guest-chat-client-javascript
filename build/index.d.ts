@@ -185,10 +185,10 @@ declare namespace Models {
 		"pageNumber"?: number;
 		"total"?: number;
 		"firstUri"?: string;
-		"selfUri"?: string;
-		"lastUri"?: string;
-		"nextUri"?: string;
 		"previousUri"?: string;
+		"lastUri"?: string;
+		"selfUri"?: string;
+		"nextUri"?: string;
 		"pageCount"?: number;
 	}
 	
