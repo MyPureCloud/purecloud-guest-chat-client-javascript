@@ -1,5 +1,4 @@
 import platformClient = require('purecloud-guest-chat-client');
-import Configuration = require('./src/purecloud-guest-chat-client/configuration');
 
 declare module 'purecloud-guest-chat-client' {
 	export const ApiClient: ApiClientClass;
@@ -34,6 +33,32 @@ declare class ProxyConfig {
 	host: string;
 	port: number;
 	protocol: string;
+}
+
+declare class Configuration {
+	instance: Configuration;
+	configPath: string;
+	live_reload_config: boolean;
+	host: string;
+	environment: string;
+	basePath: string;
+	authUrl: string;
+	logger: Logger;
+	config: any;
+	setEnvironment(environment: string): void;
+}
+
+declare class Logger {
+	log_level: string;
+	log_format: string;
+	log_file_path: string;
+	log_to_console: boolean;
+	log_response_body: boolean;
+	log_request_body: boolean;
+	logLevels: any;
+	logLevelEnum: any;
+	logFormatEnum: any;
+	setLogger(): void;
 }
 
 declare class WebChatApi {  
@@ -185,10 +210,10 @@ declare namespace Models {
 		"pageNumber"?: number;
 		"total"?: number;
 		"firstUri"?: string;
-		"previousUri"?: string;
-		"lastUri"?: string;
 		"selfUri"?: string;
 		"nextUri"?: string;
+		"previousUri"?: string;
+		"lastUri"?: string;
 		"pageCount"?: number;
 	}
 	

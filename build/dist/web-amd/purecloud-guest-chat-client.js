@@ -1,6 +1,8 @@
-define(['superagent'], function (superagent) { 'use strict';
+define(['superagent'], (function (superagent) { 'use strict';
 
-	superagent = superagent && superagent.hasOwnProperty('default') ? superagent['default'] : superagent;
+	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+	var superagent__default = /*#__PURE__*/_interopDefaultLegacy(superagent);
 
 	var PureCloudRegionHosts = {
 		us_east_1: 'mypurecloud.com',
@@ -240,7 +242,6 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 				const path = require('path');
 				this.configPath = path.join(os.homedir(), '.genesyscloudjavascript-guest', 'config');
 			}
-
 			this.live_reload_config = true;
 			this.host;
 			this.environment;
@@ -253,27 +254,29 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 		}
 
 		liveLoadConfig() {
-			// If in browser, don't read config file, use default values
-			if (typeof window !== 'undefined') {
-				this.configPath = '';
+			if (typeof window === 'undefined') {
+				// Please don't remove the typeof window === 'undefined' check here!
+				// This safeguards the browser environment from using `fs`, which is only
+				// available in node environment.
+				this.updateConfigFromFile();
+
+				if (this.live_reload_config && this.live_reload_config === true) {
+					try {
+						const fs = require('fs');
+						fs.watchFile(this.configPath, { persistent: false }, (eventType, filename) => {
+							this.updateConfigFromFile();
+							if (!this.live_reload_config) {
+								fs.unwatchFile(this.configPath);
+							}
+						});
+					} catch (err) {
+						// do nothing
+					}
+				}
 				return;
 			}
-
-			this.updateConfigFromFile();
-
-			if (this.live_reload_config && this.live_reload_config === true) {
-				try {
-					const fs = require('fs');
-					fs.watchFile(this.configPath, { persistent: false }, (eventType, filename) => {
-						this.updateConfigFromFile();
-						if (!this.live_reload_config) {
-							fs.unwatchFile(this.configPath);
-						}
-					});
-				} catch (err) {
-					// do nothing
-				}
-			}
+			// If in browser, don't read config file, use default values
+			this.configPath = '';
 		}
 
 		setConfigPath(path) {
@@ -284,24 +287,29 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 		}
 
 		updateConfigFromFile() {
-			const ConfigParser = require('configparser');
-			var configparser = new ConfigParser();
+			if (typeof window === 'undefined') {
+				// Please don't remove the typeof window === 'undefined' check here!
+				// This safeguards the browser environment from using `fs`, which is only
+				// available in node environment.
+				const ConfigParser = require('configparser');
 
-			try {
-				configparser.read(this.configPath); // If no error catched, indicates it's INI format
-				this.config = configparser;
-			} catch (error) {
-				if (error.name && error.name === 'MissingSectionHeaderError') {
-					// Not INI format, see if it's JSON format
-					const fs = require('fs');
-					var configData = fs.readFileSync(this.configPath, 'utf8');
-					this.config = {
-						_sections: JSON.parse(configData), // To match INI data format
-					};
+				try {
+					var configparser = new ConfigParser();
+					configparser.read(this.configPath); // If no error catched, indicates it's INI format
+					this.config = configparser;
+				} catch (error) {
+					if (error.name && error.name === 'MissingSectionHeaderError') {
+						// Not INI format, see if it's JSON format
+						const fs = require('fs');
+						var configData = fs.readFileSync(this.configPath, 'utf8');
+						this.config = {
+							_sections: JSON.parse(configData), // To match INI data format
+						};
+					}
 				}
-			}
 
-			if (this.config) this.updateConfigValues();
+				if (this.config) this.updateConfigValues();
+			}
 		}
 
 		updateConfigValues() {
@@ -367,7 +375,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 	/**
 	 * @module purecloud-guest-chat-client/ApiClient
-	 * @version 8.0.0
+	 * @version 8.1.0
 	 */
 	class ApiClient {
 		/**
@@ -483,7 +491,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 			this.settingsPrefix = 'purecloud';
 
 			// Expose superagent module for use with superagent-proxy
-			this.superagent = superagent;
+			this.superagent = superagent__default["default"];
 
 			if (typeof(window) !== 'undefined') window.ApiClient = this;
 		}
@@ -835,7 +843,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 		 */
 		callApi(path, httpMethod, pathParams, queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts) {
 			var url = this.buildUrl(path, pathParams);
-			var request = superagent(httpMethod, url);
+			var request = superagent__default["default"](httpMethod, url);
 
 			if (this.proxy && request.proxy) {
 				request.proxy(this.proxy);
@@ -849,7 +857,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 			// set header parameters
 			request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-			//request.set({ 'purecloud-sdk': '8.0.0' });
+			//request.set({ 'purecloud-sdk': '8.1.0' });
 
 			// set request timeout
 			request.timeout(this.timeout);
@@ -940,7 +948,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 		/**
 		 * WebChat service.
 		 * @module purecloud-guest-chat-client/api/WebChatApi
-		 * @version 8.0.0
+		 * @version 8.1.0
 		 */
 
 		/**
@@ -1319,7 +1327,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 	 * </pre>
 	 * </p>
 	 * @module purecloud-guest-chat-client/index
-	 * @version 8.0.0
+	 * @version 8.1.0
 	 */
 	class platformClient {
 		constructor() {
@@ -1346,4 +1354,4 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 	return index;
 
-});
+}));

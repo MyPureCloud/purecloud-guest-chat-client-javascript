@@ -1,7 +1,8 @@
+'use strict';
 
 /**
- * Expose `Pending`.
- */
+ @module Pending
+*/
 
 module.exports = Pending;
 

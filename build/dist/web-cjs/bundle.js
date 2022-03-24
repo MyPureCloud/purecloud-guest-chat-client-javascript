@@ -1,8 +1,10 @@
 'use strict';
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+var superagent = require('superagent');
 
-var superagent = _interopDefault(require('superagent'));
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var superagent__default = /*#__PURE__*/_interopDefaultLegacy(superagent);
 
 var PureCloudRegionHosts = {
 	us_east_1: 'mypurecloud.com',
@@ -910,7 +912,7 @@ function arrayIndexOf (arr, val, byteOffset, encoding, dir) {
     }
   }
 
-  function read$$1 (buf, i) {
+  function read (buf, i) {
     if (indexSize === 1) {
       return buf[i]
     } else {
@@ -922,7 +924,7 @@ function arrayIndexOf (arr, val, byteOffset, encoding, dir) {
   if (dir) {
     var foundIndex = -1;
     for (i = byteOffset; i < arrLength; i++) {
-      if (read$$1(arr, i) === read$$1(val, foundIndex === -1 ? 0 : i - foundIndex)) {
+      if (read(arr, i) === read(val, foundIndex === -1 ? 0 : i - foundIndex)) {
         if (foundIndex === -1) foundIndex = i;
         if (i - foundIndex + 1 === valLength) return foundIndex * indexSize
       } else {
@@ -935,7 +937,7 @@ function arrayIndexOf (arr, val, byteOffset, encoding, dir) {
     for (i = byteOffset; i >= 0; i--) {
       var found = true;
       for (var j = 0; j < valLength; j++) {
-        if (read$$1(arr, i + j) !== read$$1(val, j)) {
+        if (read(arr, i + j) !== read(val, j)) {
           found = false;
           break
         }
@@ -1006,7 +1008,7 @@ function ucs2Write (buf, string, offset, length) {
   return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
 }
 
-Buffer.prototype.write = function write$$1 (string, offset, length, encoding) {
+Buffer.prototype.write = function write (string, offset, length, encoding) {
   // Buffer#write(string)
   if (offset === undefined) {
     encoding = 'utf8';
@@ -1675,7 +1677,7 @@ function checkIEEE754 (buf, value, offset, ext, max, min) {
 
 function writeFloat (buf, value, offset, littleEndian, noAssert) {
   if (!noAssert) {
-    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38);
+    checkIEEE754(buf, value, offset, 4);
   }
   write(buf, value, offset, littleEndian, 23, 4);
   return offset + 4
@@ -1691,7 +1693,7 @@ Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) 
 
 function writeDouble (buf, value, offset, littleEndian, noAssert) {
   if (!noAssert) {
-    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308);
+    checkIEEE754(buf, value, offset, 8);
   }
   write(buf, value, offset, littleEndian, 52, 8);
   return offset + 8
@@ -2156,7 +2158,6 @@ class Configuration {
 			const path = require('path');
 			this.configPath = path.join(os.homedir(), '.genesyscloudjavascript-guest', 'config');
 		}
-
 		this.live_reload_config = true;
 		this.host;
 		this.environment;
@@ -2170,26 +2171,7 @@ class Configuration {
 
 	liveLoadConfig() {
 		// If in browser, don't read config file, use default values
-		if (typeof window !== 'undefined') {
-			this.configPath = '';
-			return;
-		}
-
-		this.updateConfigFromFile();
-
-		if (this.live_reload_config && this.live_reload_config === true) {
-			try {
-				const fs = require('fs');
-				fs.watchFile(this.configPath, { persistent: false }, (eventType, filename) => {
-					this.updateConfigFromFile();
-					if (!this.live_reload_config) {
-						fs.unwatchFile(this.configPath);
-					}
-				});
-			} catch (err) {
-				// do nothing
-			}
-		}
+		this.configPath = '';
 	}
 
 	setConfigPath(path) {
@@ -2200,24 +2182,6 @@ class Configuration {
 	}
 
 	updateConfigFromFile() {
-		const ConfigParser = require('configparser');
-		var configparser = new ConfigParser();
-
-		try {
-			configparser.read(this.configPath); // If no error catched, indicates it's INI format
-			this.config = configparser;
-		} catch (error) {
-			if (error.name && error.name === 'MissingSectionHeaderError') {
-				// Not INI format, see if it's JSON format
-				const fs = require('fs');
-				var configData = fs.readFileSync(this.configPath, 'utf8');
-				this.config = {
-					_sections: JSON.parse(configData), // To match INI data format
-				};
-			}
-		}
-
-		if (this.config) this.updateConfigValues();
 	}
 
 	updateConfigValues() {
@@ -2283,7 +2247,7 @@ class Configuration {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 8.0.0
+ * @version 8.1.0
  */
 class ApiClient {
 	/**
@@ -2399,7 +2363,7 @@ class ApiClient {
 		this.settingsPrefix = 'purecloud';
 
 		// Expose superagent module for use with superagent-proxy
-		this.superagent = superagent;
+		this.superagent = superagent__default["default"];
 
 		if (typeof(window) !== 'undefined') window.ApiClient = this;
 	}
@@ -2744,7 +2708,7 @@ class ApiClient {
 	 */
 	callApi(path, httpMethod, pathParams, queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts) {
 		var url = this.buildUrl(path, pathParams);
-		var request = superagent(httpMethod, url);
+		var request = superagent__default["default"](httpMethod, url);
 
 		if (this.proxy && request.proxy) {
 			request.proxy(this.proxy);
@@ -2758,7 +2722,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '8.0.0' });
+		//request.set({ 'purecloud-sdk': '8.1.0' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -2849,7 +2813,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 8.0.0
+	 * @version 8.1.0
 	 */
 
 	/**
@@ -3228,7 +3192,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 8.0.0
+ * @version 8.1.0
  */
 class platformClient {
 	constructor() {
