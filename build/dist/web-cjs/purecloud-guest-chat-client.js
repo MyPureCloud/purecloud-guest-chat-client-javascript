@@ -5382,19 +5382,27 @@ request.getXHR = function () {
 
   try {
     return new ActiveXObject('Microsoft.XMLHTTP');
-  } catch (_unused) {}
+  } catch (_unused) {
+    /**/
+  }
 
   try {
     return new ActiveXObject('Msxml2.XMLHTTP.6.0');
-  } catch (_unused2) {}
+  } catch (_unused2) {
+    /**/
+  }
 
   try {
     return new ActiveXObject('Msxml2.XMLHTTP.3.0');
-  } catch (_unused3) {}
+  } catch (_unused3) {
+    /**/
+  }
 
   try {
     return new ActiveXObject('Msxml2.XMLHTTP');
-  } catch (_unused4) {}
+  } catch (_unused4) {
+    /**/
+  }
 
   throw new Error('Browser-only version of superagent could not find XHR');
 };
@@ -9649,7 +9657,7 @@ class Configuration {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 8.1.2
+ * @version 8.1.3
  */
 class ApiClient {
 	/**
@@ -10124,7 +10132,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '8.1.2' });
+		//request.set({ 'purecloud-sdk': '8.1.3' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -10215,7 +10223,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 8.1.2
+	 * @version 8.1.3
 	 */
 
 	/**
@@ -10594,7 +10602,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 8.1.2
+ * @version 8.1.3
  */
 class platformClient {
 	constructor() {

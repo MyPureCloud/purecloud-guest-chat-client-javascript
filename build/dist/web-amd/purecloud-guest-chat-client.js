@@ -375,7 +375,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 	/**
 	 * @module purecloud-guest-chat-client/ApiClient
-	 * @version 8.1.2
+	 * @version 8.1.3
 	 */
 	class ApiClient {
 		/**
@@ -857,7 +857,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 			// set header parameters
 			request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-			//request.set({ 'purecloud-sdk': '8.1.2' });
+			//request.set({ 'purecloud-sdk': '8.1.3' });
 
 			// set request timeout
 			request.timeout(this.timeout);
@@ -948,7 +948,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 		/**
 		 * WebChat service.
 		 * @module purecloud-guest-chat-client/api/WebChatApi
-		 * @version 8.1.2
+		 * @version 8.1.3
 		 */
 
 		/**
@@ -1327,7 +1327,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 	 * </pre>
 	 * </p>
 	 * @module purecloud-guest-chat-client/index
-	 * @version 8.1.2
+	 * @version 8.1.3
 	 */
 	class platformClient {
 		constructor() {
