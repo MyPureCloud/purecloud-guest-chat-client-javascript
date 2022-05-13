@@ -15,7 +15,7 @@
         "required": "true"
       }
     ],
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .DeleteWebchatGuestConversationMemberRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet memberId = \"memberId_example\"; // String | memberId\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully.');\n  }\n};\napiInstance.deleteWebchatGuestConversationMember(conversationId, memberId, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.DeleteWebchatGuestConversationMemberRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet memberId = \"memberId_example\"; // String | memberId\n\napiInstance.deleteWebchatGuestConversationMember(conversationId, memberId)\n  .then(() => {\n    console.log('deleteWebchatGuestConversationMember returned successfully.');\n  })\n  .catch((err) => {\n    console.log('There was a failure calling deleteWebchatGuestConversationMember');\n    console.error(err);\n  });\n\n"
   },
   "getwebchatguestconversationmediarequest": {
     "operationId": "getwebchatguestconversationmediarequest",
@@ -34,7 +34,7 @@
       }
     ],
     "return": "WebChatGuestMediaRequest",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .GetWebchatGuestConversationMediarequestRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet mediaRequestId = \"mediaRequestId_example\"; // String | mediaRequestId\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.getWebchatGuestConversationMediarequest(conversationId, mediaRequestId, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.GetWebchatGuestConversationMediarequestRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet mediaRequestId = \"mediaRequestId_example\"; // String | mediaRequestId\n\napiInstance.getWebchatGuestConversationMediarequest(conversationId, mediaRequestId)\n  .then((data) => {\n    console.log(`getWebchatGuestConversationMediarequest success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling getWebchatGuestConversationMediarequest');\n    console.error(err);\n  });\n\n"
   },
   "getwebchatguestconversationmediarequests": {
     "operationId": "getwebchatguestconversationmediarequests",
@@ -48,7 +48,7 @@
       }
     ],
     "return": "WebChatGuestMediaRequestEntityList",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .GetWebchatGuestConversationMediarequestsRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.getWebchatGuestConversationMediarequests(conversationId, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.GetWebchatGuestConversationMediarequestsRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\n\napiInstance.getWebchatGuestConversationMediarequests(conversationId)\n  .then((data) => {\n    console.log(`getWebchatGuestConversationMediarequests success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling getWebchatGuestConversationMediarequests');\n    console.error(err);\n  });\n\n"
   },
   "getwebchatguestconversationmember": {
     "operationId": "getwebchatguestconversationmember",
@@ -67,7 +67,7 @@
       }
     ],
     "return": "WebChatMemberInfo",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .GetWebchatGuestConversationMemberRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet memberId = \"memberId_example\"; // String | memberId\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.getWebchatGuestConversationMember(conversationId, memberId, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.GetWebchatGuestConversationMemberRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet memberId = \"memberId_example\"; // String | memberId\n\napiInstance.getWebchatGuestConversationMember(conversationId, memberId)\n  .then((data) => {\n    console.log(`getWebchatGuestConversationMember success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling getWebchatGuestConversationMember');\n    console.error(err);\n  });\n\n"
   },
   "getwebchatguestconversationmembers": {
     "operationId": "getwebchatguestconversationmembers",
@@ -96,7 +96,7 @@
       }
     ],
     "return": "WebChatMemberInfoEntityList",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .GetWebchatGuestConversationMembersRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet opts = { \n  'pageSize': 25, // Number | The number of entries to return per page, or omitted for the default.\n  'pageNumber': 1, // Number | The page number to return, or omitted for the first page.\n  'excludeDisconnectedMembers': false // Boolean | If true, the results will not contain members who have a DISCONNECTED state.\n};\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.getWebchatGuestConversationMembers(conversationId, opts, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.GetWebchatGuestConversationMembersRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet opts = { \n  'pageSize': 25, // Number | The number of entries to return per page, or omitted for the default.\n  'pageNumber': 1, // Number | The page number to return, or omitted for the first page.\n  'excludeDisconnectedMembers': false // Boolean | If true, the results will not contain members who have a DISCONNECTED state.\n};\n\napiInstance.getWebchatGuestConversationMembers(conversationId, opts)\n  .then((data) => {\n    console.log(`getWebchatGuestConversationMembers success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling getWebchatGuestConversationMembers');\n    console.error(err);\n  });\n\n"
   },
   "getwebchatguestconversationmessage": {
     "operationId": "getwebchatguestconversationmessage",
@@ -115,7 +115,7 @@
       }
     ],
     "return": "WebChatMessage",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .GetWebchatGuestConversationMessageRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet messageId = \"messageId_example\"; // String | messageId\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.getWebchatGuestConversationMessage(conversationId, messageId, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.GetWebchatGuestConversationMessageRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet messageId = \"messageId_example\"; // String | messageId\n\napiInstance.getWebchatGuestConversationMessage(conversationId, messageId)\n  .then((data) => {\n    console.log(`getWebchatGuestConversationMessage success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling getWebchatGuestConversationMessage');\n    console.error(err);\n  });\n\n"
   },
   "getwebchatguestconversationmessages": {
     "operationId": "getwebchatguestconversationmessages",
@@ -149,7 +149,7 @@
       }
     ],
     "return": "WebChatMessageEntityList",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .GetWebchatGuestConversationMessagesRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet opts = { \n  'after': \"after_example\", // String | If available, get the messages chronologically after the id of this message\n  'before': \"before_example\", // String | If available, get the messages chronologically before the id of this message\n  'sortOrder': \"ascending\", // String | Sort order\n  'maxResults': 100 // Number | Limit the returned number of messages, up to a maximum of 100\n};\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.getWebchatGuestConversationMessages(conversationId, opts, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.GetWebchatGuestConversationMessagesRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet opts = { \n  'after': \"after_example\", // String | If available, get the messages chronologically after the id of this message\n  'before': \"before_example\", // String | If available, get the messages chronologically before the id of this message\n  'sortOrder': \"ascending\", // String | Sort order\n  'maxResults': 100 // Number | Limit the returned number of messages, up to a maximum of 100\n};\n\napiInstance.getWebchatGuestConversationMessages(conversationId, opts)\n  .then((data) => {\n    console.log(`getWebchatGuestConversationMessages success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling getWebchatGuestConversationMessages');\n    console.error(err);\n  });\n\n"
   },
   "patchwebchatguestconversationmediarequest": {
     "operationId": "patchwebchatguestconversationmediarequest",
@@ -173,7 +173,7 @@
       }
     ],
     "return": "WebChatGuestMediaRequest",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .PatchWebchatGuestConversationMediarequestRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet mediaRequestId = \"mediaRequestId_example\"; // String | mediaRequestId\nlet body = {}; // Object | Request\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.patchWebchatGuestConversationMediarequest(conversationId, mediaRequestId, body, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.PatchWebchatGuestConversationMediarequestRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet mediaRequestId = \"mediaRequestId_example\"; // String | mediaRequestId\nlet body = {}; // Object | Request\n\napiInstance.patchWebchatGuestConversationMediarequest(conversationId, mediaRequestId, body)\n  .then((data) => {\n    console.log(`patchWebchatGuestConversationMediarequest success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling patchWebchatGuestConversationMediarequest');\n    console.error(err);\n  });\n\n"
   },
   "postwebchatguestconversationmembermessages": {
     "operationId": "postwebchatguestconversationmembermessages",
@@ -197,7 +197,7 @@
       }
     ],
     "return": "WebChatMessage",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .PostWebchatGuestConversationMemberMessagesRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet memberId = \"memberId_example\"; // String | memberId\nlet body = {}; // Object | Message\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.postWebchatGuestConversationMemberMessages(conversationId, memberId, body, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.PostWebchatGuestConversationMemberMessagesRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet memberId = \"memberId_example\"; // String | memberId\nlet body = {}; // Object | Message\n\napiInstance.postWebchatGuestConversationMemberMessages(conversationId, memberId, body)\n  .then((data) => {\n    console.log(`postWebchatGuestConversationMemberMessages success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling postWebchatGuestConversationMemberMessages');\n    console.error(err);\n  });\n\n"
   },
   "postwebchatguestconversationmembertyping": {
     "operationId": "postwebchatguestconversationmembertyping",
@@ -216,7 +216,7 @@
       }
     ],
     "return": "WebChatTyping",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\n// Set JWT from the create chat response\n.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new .PostWebchatGuestConversationMemberTypingRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet memberId = \"memberId_example\"; // String | memberId\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.postWebchatGuestConversationMemberTyping(conversationId, memberId, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\n// Set JWT from the create chat response\nplatformClient.ApiClient.instance.setJwt(chatInfo.jwt);\n\nlet apiInstance = new platformClient.PostWebchatGuestConversationMemberTypingRequest();\n\nlet conversationId = \"conversationId_example\"; // String | conversationId\nlet memberId = \"memberId_example\"; // String | memberId\n\napiInstance.postWebchatGuestConversationMemberTyping(conversationId, memberId)\n  .then((data) => {\n    console.log(`postWebchatGuestConversationMemberTyping success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling postWebchatGuestConversationMemberTyping');\n    console.error(err);\n  });\n\n"
   },
   "postwebchatguestconversations": {
     "operationId": "postwebchatguestconversations",
@@ -230,6 +230,6 @@
       }
     ],
     "return": "CreateWebChatConversationResponse",
-    "example": "// Browser\nconst  = require('');\n// Node\nconst  = require('');\n\nlet apiInstance = new .PostWebchatGuestConversationsRequest();\n\nlet body = {}; // Object | CreateConversationRequest\n\n\nlet callback = (error, data, response) => {\n  if (error) {\n    console.error(error);\n  } else {\n    console.log('API called successfully. Returned data: ' + data);\n  }\n};\napiInstance.postWebchatGuestConversations(body, callback);\n"
+    "example": "// Browser\nconst platformClient = require('platformClient');\n// Node\nconst platformClient = require('purecloud-guest-chat-client');\n\nlet apiInstance = new platformClient.PostWebchatGuestConversationsRequest();\n\nlet body = {}; // Object | CreateConversationRequest\n\napiInstance.postWebchatGuestConversations(body)\n  .then((data) => {\n    console.log(`postWebchatGuestConversations success! data: ${JSON.stringify(data, null, 2)}`);\n  })\n  .catch((err) => {\n    console.log('There was a failure calling postWebchatGuestConversations');\n    console.error(err);\n  });\n\n"
   }
 }

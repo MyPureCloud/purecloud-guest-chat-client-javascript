@@ -212,8 +212,8 @@ declare namespace Models {
 		"lastUri"?: string;
 		"firstUri"?: string;
 		"selfUri"?: string;
-		"nextUri"?: string;
 		"previousUri"?: string;
+		"nextUri"?: string;
 		"pageCount"?: number;
 	}
 	

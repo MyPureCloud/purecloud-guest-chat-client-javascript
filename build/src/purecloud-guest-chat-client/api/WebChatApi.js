@@ -5,7 +5,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 8.1.3
+	 * @version 9.0.0
 	 */
 
 	/**
@@ -22,7 +22,6 @@ class WebChatApi {
 
 	/**
 	 * Remove a member from a chat conversation
-	 * 
 	 * @param {String} conversationId conversationId
 	 * @param {String} memberId memberId
 	 */
@@ -39,20 +38,19 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}', 
 			'DELETE', 
-			{ 'conversationId': conversationId,'memberId': memberId }, 
-			{  }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId,'memberId': memberId },
+			{  },
+			{  },
+			{  },
 			null, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Get a media request in the conversation
-	 * 
 	 * @param {String} conversationId conversationId
 	 * @param {String} mediaRequestId mediaRequestId
 	 */
@@ -69,20 +67,19 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}', 
 			'GET', 
-			{ 'conversationId': conversationId,'mediaRequestId': mediaRequestId }, 
-			{  }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId,'mediaRequestId': mediaRequestId },
+			{  },
+			{  },
+			{  },
 			null, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Get all media requests to the guest in the conversation
-	 * 
 	 * @param {String} conversationId conversationId
 	 */
 	getWebchatGuestConversationMediarequests(conversationId) { 
@@ -94,20 +91,19 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/mediarequests', 
 			'GET', 
-			{ 'conversationId': conversationId }, 
-			{  }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId },
+			{  },
+			{  },
+			{  },
 			null, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Get a web chat conversation member
-	 * 
 	 * @param {String} conversationId conversationId
 	 * @param {String} memberId memberId
 	 */
@@ -124,20 +120,19 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}', 
 			'GET', 
-			{ 'conversationId': conversationId,'memberId': memberId }, 
-			{  }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId,'memberId': memberId },
+			{  },
+			{  },
+			{  },
 			null, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Get the members of a chat conversation.
-	 * 
 	 * @param {String} conversationId conversationId
 	 * @param {Object} opts Optional parameters
 	 * @param {Number} opts.pageSize The number of entries to return per page, or omitted for the default. (default to 25)
@@ -155,20 +150,19 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/members', 
 			'GET', 
-			{ 'conversationId': conversationId }, 
-			{ 'pageSize': opts['pageSize'],'pageNumber': opts['pageNumber'],'excludeDisconnectedMembers': opts['excludeDisconnectedMembers'] }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId },
+			{ 'pageSize': opts['pageSize'],'pageNumber': opts['pageNumber'],'excludeDisconnectedMembers': opts['excludeDisconnectedMembers'] },
+			{  },
+			{  },
 			null, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Get a web chat conversation message
-	 * 
 	 * @param {String} conversationId conversationId
 	 * @param {String} messageId messageId
 	 */
@@ -185,20 +179,19 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/messages/{messageId}', 
 			'GET', 
-			{ 'conversationId': conversationId,'messageId': messageId }, 
-			{  }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId,'messageId': messageId },
+			{  },
+			{  },
+			{  },
 			null, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Get the messages of a chat conversation.
-	 * 
 	 * @param {String} conversationId conversationId
 	 * @param {Object} opts Optional parameters
 	 * @param {String} opts.after If available, get the messages chronologically after the id of this message
@@ -217,20 +210,19 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/messages', 
 			'GET', 
-			{ 'conversationId': conversationId }, 
-			{ 'after': opts['after'],'before': opts['before'],'sortOrder': opts['sortOrder'],'maxResults': opts['maxResults'] }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId },
+			{ 'after': opts['after'],'before': opts['before'],'sortOrder': opts['sortOrder'],'maxResults': opts['maxResults'] },
+			{  },
+			{  },
 			null, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Update a media request in the conversation, setting the state to ACCEPTED/DECLINED/ERRORED
-	 * 
 	 * @param {String} conversationId conversationId
 	 * @param {String} mediaRequestId mediaRequestId
 	 * @param {Object} body Request
@@ -252,20 +244,19 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}', 
 			'PATCH', 
-			{ 'conversationId': conversationId,'mediaRequestId': mediaRequestId }, 
-			{  }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId,'mediaRequestId': mediaRequestId },
+			{  },
+			{  },
+			{  },
 			body, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Send a message in a chat conversation.
-	 * 
 	 * @param {String} conversationId conversationId
 	 * @param {String} memberId memberId
 	 * @param {Object} body Message
@@ -287,20 +278,19 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}/messages', 
 			'POST', 
-			{ 'conversationId': conversationId,'memberId': memberId }, 
-			{  }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId,'memberId': memberId },
+			{  },
+			{  },
+			{  },
 			body, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Send a typing-indicator in a chat conversation.
-	 * 
 	 * @param {String} conversationId conversationId
 	 * @param {String} memberId memberId
 	 */
@@ -317,20 +307,20 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}/typing', 
 			'POST', 
-			{ 'conversationId': conversationId,'memberId': memberId }, 
-			{  }, 
-			{  }, 
-			{  }, 
+			{ 'conversationId': conversationId,'memberId': memberId },
+			{  },
+			{  },
+			{  },
 			null, 
-			['Guest Chat JWT'], 
-			['application/json'], 
+			['Guest Chat JWT'],
+			['application/json'],
 			['application/json']
 		);
 	}
 
 	/**
 	 * Create an ACD chat conversation from an external customer.
-	 * This endpoint will create a new ACD Chat conversation under the specified Chat Deployment.  The conversation will begin with a guest member in it (with a role=CUSTOMER) according to the customer information that is supplied. If the guest member is authenticated, the &#39;memberAuthToken&#39; field should include his JWT as generated by the &#39;POST /api/v2/signeddata&#39; resource; if the guest member is anonymous (and the Deployment permits it) this field can be omitted.  The returned data includes the IDs of the conversation created, along with a newly-create JWT token that you can supply to all future endpoints as authentication to perform operations against that conversation. After successfully creating a conversation, you should connect a websocket to the event stream named in the &#39;eventStreamUri&#39; field of the response; the conversation is not routed until the event stream is attached.
+	 * This endpoint will create a new ACD Chat conversation under the specified Chat Deployment.  The conversation will begin with a guest member in it (with a role&#x3D;CUSTOMER) according to the customer information that is supplied. If the guest member is authenticated, the memberAuthToken field should include his JWT as generated by the POST /api/v2/signeddata resource; if the guest member is anonymous (and the Deployment permits it) this field can be omitted.  The returned data includes the IDs of the conversation created, along with a newly-create JWT token that you can supply to all future endpoints as authentication to perform operations against that conversation. After successfully creating a conversation, you should connect a websocket to the event stream named in the eventStreamUri field of the response; the conversation is not routed until the event stream is attached.
 	 * @param {Object} body CreateConversationRequest
 	 */
 	postWebchatGuestConversations(body) { 
@@ -342,13 +332,13 @@ class WebChatApi {
 		return this.apiClient.callApi(
 			'/api/v2/webchat/guest/conversations', 
 			'POST', 
-			{  }, 
-			{  }, 
-			{  }, 
-			{  }, 
+			{  },
+			{  },
+			{  },
+			{  },
 			body, 
-			[], 
-			['application/json'], 
+			[],
+			['application/json'],
 			['application/json']
 		);
 	}

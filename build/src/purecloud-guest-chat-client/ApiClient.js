@@ -3,7 +3,7 @@ import Configuration from './configuration.js';
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 8.1.3
+ * @version 9.0.0
  */
 class ApiClient {
 	/**
@@ -97,10 +97,9 @@ class ApiClient {
 		 * @type {Array.<String>}
 		 */
 		this.authentications = {
-			'PureCloud OAuth': {type: 'oauth2'},
-			'Guest Chat JWT': {type: 'apiKey', 'in': 'header', name: 'Authorization', apiKeyPrefix: 'Bearer' }
+			'Guest Chat JWT': {type: 'apiKey', 'in': 'header', name: 'Authorization', apiKeyPrefix: 'Bearer' },
+			'PureCloud OAuth': {type: 'oauth2'}
 		};
-
 		/**
 		 * The default HTTP headers to be included for all API calls.
 		 * @type {Array.<String>}
@@ -485,7 +484,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '8.1.3' });
+		//request.set({ 'purecloud-sdk': '9.0.0' });
 
 		// set request timeout
 		request.timeout(this.timeout);
