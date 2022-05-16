@@ -255,6 +255,11 @@ Buffer.TYPED_ARRAY_SUPPORT = global$1.TYPED_ARRAY_SUPPORT !== undefined
   ? global$1.TYPED_ARRAY_SUPPORT
   : true;
 
+/*
+ * Export kMaxLength after typed array support is determined.
+ */
+kMaxLength();
+
 function kMaxLength () {
   return Buffer.TYPED_ARRAY_SUPPORT
     ? 0x7fffffff
@@ -346,6 +351,8 @@ Buffer.from = function (value, encodingOrOffset, length) {
 if (Buffer.TYPED_ARRAY_SUPPORT) {
   Buffer.prototype.__proto__ = Uint8Array.prototype;
   Buffer.__proto__ = Uint8Array;
+  if (typeof Symbol !== 'undefined' && Symbol.species &&
+      Buffer[Symbol.species] === Buffer) ;
 }
 
 function assertSize (size) {
@@ -2247,7 +2254,7 @@ class Configuration {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 9.0.0
+ * @version 9.0.1
  */
 class ApiClient {
 	/**
@@ -2721,7 +2728,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '9.0.0' });
+		//request.set({ 'purecloud-sdk': '9.0.1' });
 
 		// set request timeout
 		request.timeout(this.timeout);
@@ -2812,7 +2819,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 9.0.0
+	 * @version 9.0.1
 	 */
 
 	/**
@@ -3181,7 +3188,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 9.0.0
+ * @version 9.0.1
  */
 class platformClient {
 	constructor() {

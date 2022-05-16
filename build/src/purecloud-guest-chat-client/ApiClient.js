@@ -3,7 +3,7 @@ import Configuration from './configuration.js';
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 9.0.0
+ * @version 9.0.1
  */
 class ApiClient {
 	/**
@@ -484,7 +484,7 @@ class ApiClient {
 
 		// set header parameters
 		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '9.0.0' });
+		//request.set({ 'purecloud-sdk': '9.0.1' });
 
 		// set request timeout
 		request.timeout(this.timeout);
