@@ -1,10 +1,10 @@
 'use strict';
 
-var superagent = require('superagent');
+var axios = require('axios');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-var superagent__default = /*#__PURE__*/_interopDefaultLegacy(superagent);
+var axios__default = /*#__PURE__*/_interopDefaultLegacy(axios);
 
 var PureCloudRegionHosts = {
 	us_east_1: 'mypurecloud.com',
@@ -377,7 +377,7 @@ class Configuration {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 9.0.1
+ * @version 9.1.0
  */
 class ApiClient {
 	/**
@@ -490,9 +490,6 @@ class ApiClient {
 
 		this.authData = {};
 		this.settingsPrefix = 'purecloud';
-
-		// Expose superagent module for use with superagent-proxy
-		this.superagent = superagent__default["default"];
 
 		if (typeof(window) !== 'undefined') window.ApiClient = this;
 	}
@@ -655,6 +652,36 @@ class ApiClient {
 	}
 
 	/**
+	 * Returns query parameters serialized in the format needed for an axios request.
+	 * @param param The unserialized query parameters.
+	 * @returns {Object} The serialized representation the query parameters.
+	 */
+	serialize(obj) {
+		var result = {};
+		for (var p in obj) {
+			if (obj.hasOwnProperty(p)) {
+				result[encodeURIComponent(p)] = Array.isArray(obj[p]) ? obj[p].join(",") : this.paramToString(obj[p]);
+			}
+		}
+		return result
+	}
+
+	/**
+	 * Adds headers onto an existing header object (may be empty)
+	 * @param existingHeaders The existing header object.
+	 * @param newHeaders New headers.
+	 * @returns {Object} The combination of all headers.
+	 */
+	addHeaders(existingHeaders, ...newHeaders) {
+		if (existingHeaders) {
+			existingHeaders = Object.assign(existingHeaders, ...newHeaders);
+		} else {
+			existingHeaders = Object.assign(...newHeaders);
+		}
+		return existingHeaders;
+	}
+
+	/**
 	 * Builds full URL by appending the given path to the base URL and replacing path parameter place-holders with parameter values.
 	 * NOTE: query parameters are not handled here.
 	 * @param {String} path The path to append to the base URL.
@@ -780,7 +807,7 @@ class ApiClient {
 			case 'pipes':
 				return param.map(this.paramToString).join('|');
 			case 'multi':
-				// return the array directly as SuperAgent will handle it as expected
+				// return the array directly as axios will handle it as expected
 				return param.map(this.paramToString);
 			default:
 				throw new Error(`Unknown collection format: ${collectionFormat}`);
@@ -789,7 +816,7 @@ class ApiClient {
 
 	/**
 	 * Applies authentication headers to the request.
-	 * @param {Object} request The request object created by a <code>superagent()</code> call.
+	 * @param {Object} request The axios request config object.
 	 * @param {Array.<String>} authNames An array of authentication method names.
 	 */
 	applyAuthToRequest(request, authNames) {
@@ -798,7 +825,10 @@ class ApiClient {
 			switch (auth.type) {
 				case 'basic':
 					if (auth.username || auth.password) {
-						request.auth(auth.username || '', auth.password || '');
+						request.auth = {
+							username: auth.username || '',
+							password: auth.password || ''
+						};
 					}
 					break;
 				case 'apiKey':
@@ -810,15 +840,15 @@ class ApiClient {
 							data[auth.name] = auth.apiKey;
 						}
 						if (auth['in'] === 'header') {
-							request.set(data);
+							request.headers = this.addHeaders(request.headers, data);
 						} else {
-							request.query(data);
+							request.params = this.serialize(data);
 						}
 					}
 					break;
 				case 'oauth2':
 					if (auth.accessToken) {
-						request.set({'Authorization': `Bearer ${auth.accessToken}`});
+						request.headers = this.addHeaders(request.headers, {'Authorization': `Bearer ${auth.accessToken}`});
 					}
 					break;
 				default:
@@ -844,103 +874,95 @@ class ApiClient {
 	 */
 	callApi(path, httpMethod, pathParams, queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts) {
 		var url = this.buildUrl(path, pathParams);
-		var request = superagent__default["default"](httpMethod, url);
-
-		if (this.proxy && request.proxy) {
-			request.proxy(this.proxy);
-		}
+		var request = {
+			method: httpMethod,
+			url: url,
+			proxy: this.proxy,
+			timeout: this.timeout,
+			params: this.serialize(queryParams)
+		};
 
 		// apply authentications
 		this.applyAuthToRequest(request, authNames);
 
-		// set query parameters
-		request.query(this.normalizeParams(queryParams));
-
 		// set header parameters
-		request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-		//request.set({ 'purecloud-sdk': '9.0.1' });
-
-		// set request timeout
-		request.timeout(this.timeout);
+		const defaultHeaders = this.defaultHeaders;
+		const normalizedHeaderParams = this.normalizeParams(headerParams);
+		request.headers = this.addHeaders(request.headers, defaultHeaders, normalizedHeaderParams);
 
 		var contentType = this.jsonPreferredMime(contentTypes);
 		if (contentType) {
-			request.type(contentType);
-		} else if (!request.header['Content-Type']) {
-			request.type('application/json');
+			request.headers['Content-Type'] = contentType;
+		} else if (!request.headers['Content-Type']) {
+			request.headers['Content-Type'] = 'application/json';
 		}
 
 		if (contentType === 'application/x-www-form-urlencoded') {
-			request.send(this.normalizeParams(formParams));
+			request.data = this.normalizeParams(formParams);
 		} else if (contentType == 'multipart/form-data') {
 			var _formParams = this.normalizeParams(formParams);
 			for (var key in _formParams) {
 				if (_formParams.hasOwnProperty(key)) {
-					if (this.isFileParam(_formParams[key])) {
-						// file field
-						request.attach(key, _formParams[key]);
-					} else {
-						request.field(key, _formParams[key]);
-					}
+					// Looks like axios handles files and forms the same way
+					var formData = new FormData();
+					formData.set(key, _formParams[key]);
+					request.data = formData;
 				}
 			}
 		} else if (bodyParam) {
-			request.send(bodyParam);
+			request.data = bodyParam;
 		}
 
 		var accept = this.jsonPreferredMime(accepts);
 		if (accept) {
-			request.accept(accept);
+			request.headers['Accept'] = accept;
 		}
 
 		return new Promise((resolve, reject) => {
-			request.end((error, response) => {
-				if (error) {
-					if (!response) {
-						reject({
-							status: 0,
-							statusText: 'error',
-							headers: [],
-							body: {},
-							text: 'error',
-							error: error
-						});
-						return;
-					}
-				}
+			axios__default["default"].request(request)
+				.then((response) => {
+					// Build response object
+					var data = (this.returnExtended === true) ? {
+						status: response.status,
+						statusText: response.statusText,
+						headers: response.headers,
+						body: response.data,
+						text: response.text,
+						error: null
+					} : response.data ? response.data : response.text;
 
-				// Build response object
-				var data = (this.returnExtended === true || error) ? {
-					status: response.status,
-					statusText: response.statusText,
-					headers: response.headers,
-					body: response.body,
-					text: response.text,
-					error: error
-				} : response.body ? response.body : response.text;
+					// Debug logging
+					this.config.logger.log('trace', response.status, httpMethod, url, request.headers, response.headers, bodyParam, undefined);
+					this.config.logger.log('debug', response.status, httpMethod, url, request.headers, undefined, bodyParam, undefined);
 
-				// Debug logging
-				this.config.logger.log('trace', response.statusCode, httpMethod, url, request.header, response.headers, bodyParam, undefined);
-				this.config.logger.log('debug', response.statusCode, httpMethod, url, request.header, undefined, bodyParam, undefined);
-
-				// Resolve promise
-				if (error) {
-					// Log error
-					this.config.logger.log(
-						'error',
-						response.statusCode,
-						httpMethod,
-						url,
-						request.header,
-						response.headers,
-						bodyParam,
-						response.body
-					);
-					reject(data);
-				} else {
+					// Resolve promise
 					resolve(data);
-				}
-			});
+				})
+				.catch((error) => {
+					var data = error;
+					if (error.response) {
+						// Log error
+						this.config.logger.log(
+							'error',
+							error.response.status,
+							httpMethod,
+							url,
+							request.headers,
+							error.response.headers,
+							bodyParam,
+							error.response.data
+						);
+						data = (this.returnExtended === true) ? {
+							status: error.response.status,
+							statusText: error.response.statusText,
+							headers: error.response.headers,
+							body: error.response.data,
+							text: error.response.text,
+							error: error
+						} : error.response.data ? error.response.data : error.response.text;
+					}
+					reject(data);
+				});
 		});
 	}
 }
@@ -949,7 +971,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 9.0.1
+	 * @version 9.1.0
 	 */
 
 	/**
@@ -1318,7 +1340,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 9.0.1
+ * @version 9.1.0
  */
 class platformClient {
 	constructor() {
