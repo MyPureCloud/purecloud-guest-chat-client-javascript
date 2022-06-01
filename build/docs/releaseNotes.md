@@ -1,7 +1,7 @@
-Platform API version: 5697
+Platform API version: 5767
 
 
-Updating from superagent to axios due to a vulnerability. Changes might be noted in the structure of error logging. Any issues can be reported on the forum at https://developer.genesys.cloud/forum/
+Fixing a bug with query parameter handling.
 
 # Major Changes (0 changes)
 
