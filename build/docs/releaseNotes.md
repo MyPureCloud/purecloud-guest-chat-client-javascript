@@ -1,7 +1,5 @@
-Platform API version: 5767
+Platform API version: 6160
 
-
-Fixing a bug with query parameter handling.
 
 # Major Changes (0 changes)
 
