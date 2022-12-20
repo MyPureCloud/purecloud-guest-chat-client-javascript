@@ -376,7 +376,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 	/**
 	 * @module purecloud-guest-chat-client/ApiClient
-	 * @version 9.2.1
+	 * @version 9.2.2
 	 */
 	class ApiClient {
 		/**
@@ -970,7 +970,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 		/**
 		 * WebChat service.
 		 * @module purecloud-guest-chat-client/api/WebChatApi
-		 * @version 9.2.1
+		 * @version 9.2.2
 		 */
 
 		/**
@@ -1339,7 +1339,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 	 * </pre>
 	 * </p>
 	 * @module purecloud-guest-chat-client/index
-	 * @version 9.2.1
+	 * @version 9.2.2
 	 */
 	class platformClient {
 		constructor() {
