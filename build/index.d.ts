@@ -210,8 +210,8 @@ declare namespace Models {
 		"total"?: number;
 		"firstUri"?: string;
 		"nextUri"?: string;
-		"lastUri"?: string;
 		"previousUri"?: string;
+		"lastUri"?: string;
 		"selfUri"?: string;
 		"pageCount"?: number;
 	}
