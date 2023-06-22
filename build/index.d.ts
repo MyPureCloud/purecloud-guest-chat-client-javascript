@@ -128,6 +128,7 @@ declare namespace Models {
 		"contextId"?: string;
 		"details"?: Array<Models.Detail>;
 		"errors"?: Array<Models.ErrorBody>;
+		"limit"?: Models.Limit;
 	}
 	
 	export interface GuestMemberInfo { 
@@ -164,6 +165,12 @@ declare namespace Models {
 	export interface JourneyCustomerSession { 
 		"id": string;
 		"type": string;
+	}
+	
+	export interface Limit { 
+		"key"?: string;
+		"namespace"?: string;
+		"value"?: number;
 	}
 	
 	export interface WebChatConversation { 
