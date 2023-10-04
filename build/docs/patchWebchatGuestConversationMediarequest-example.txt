@@ -1,0 +1,23 @@
+// Browser
+const platformClient = require('platformClient');
+// Node
+const platformClient = require('purecloud-guest-chat-client');
+
+// Set JWT from the create chat response
+platformClient.ApiClient.instance.setJwt(chatInfo.jwt);
+
+let apiInstance = new platformClient.PatchWebchatGuestConversationMediarequestRequest();
+
+let conversationId = "conversationId_example"; // String | conversationId
+let mediaRequestId = "mediaRequestId_example"; // String | mediaRequestId
+let body = {}; // Object | Request
+
+apiInstance.patchWebchatGuestConversationMediarequest(conversationId, mediaRequestId, body)
+  .then((data) => {
+    console.log(`patchWebchatGuestConversationMediarequest success! data: ${JSON.stringify(data, null, 2)}`);
+  })
+  .catch((err) => {
+    console.log('There was a failure calling patchWebchatGuestConversationMediarequest');
+    console.error(err);
+  });
+

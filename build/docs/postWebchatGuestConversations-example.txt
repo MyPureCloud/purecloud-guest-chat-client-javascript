@@ -1,0 +1,18 @@
+// Browser
+const platformClient = require('platformClient');
+// Node
+const platformClient = require('purecloud-guest-chat-client');
+
+let apiInstance = new platformClient.PostWebchatGuestConversationsRequest();
+
+let body = {}; // Object | CreateConversationRequest
+
+apiInstance.postWebchatGuestConversations(body)
+  .then((data) => {
+    console.log(`postWebchatGuestConversations success! data: ${JSON.stringify(data, null, 2)}`);
+  })
+  .catch((err) => {
+    console.log('There was a failure calling postWebchatGuestConversations');
+    console.error(err);
+  });
+
