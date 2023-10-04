@@ -32,7 +32,7 @@ import WebChatApi from './api/WebChatApi.js';
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 13.3.0
+ * @version 13.4.0
  */
 class platformClient {
 	constructor() {
