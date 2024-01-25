@@ -4991,6 +4991,9 @@ var PureCloudRegionHosts = {
 	ap_south_1: 'aps1.pure.cloud',
 	us_east_2: 'use2.us-gov-pure.cloud',
 	sa_east_1: 'sae1.pure.cloud',
+	me_central_1: 'mec1.pure.cloud',
+	ap_northeast_3: 'apne3.pure.cloud',
+	eu_central_2: 'euc2.pure.cloud',
 };
 
 var global$1 = (typeof global !== "undefined" ? global :
@@ -7227,7 +7230,7 @@ class Configuration {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 13.8.0
+ * @version 13.8.1
  */
 class ApiClient {
 	/**
@@ -7814,7 +7817,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 13.8.0
+	 * @version 13.8.1
 	 */
 
 	/**
@@ -8183,7 +8186,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 13.8.0
+ * @version 13.8.1
  */
 class platformClient {
 	constructor() {

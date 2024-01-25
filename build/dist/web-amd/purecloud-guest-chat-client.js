@@ -17,6 +17,9 @@ define(['axios'], (function (axios) { 'use strict';
 		ap_south_1: 'aps1.pure.cloud',
 		us_east_2: 'use2.us-gov-pure.cloud',
 		sa_east_1: 'sae1.pure.cloud',
+		me_central_1: 'mec1.pure.cloud',
+		ap_northeast_3: 'apne3.pure.cloud',
+		eu_central_2: 'euc2.pure.cloud',
 	};
 
 	const logLevels = {
@@ -376,7 +379,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 	/**
 	 * @module purecloud-guest-chat-client/ApiClient
-	 * @version 13.8.0
+	 * @version 13.8.1
 	 */
 	class ApiClient {
 		/**
@@ -970,7 +973,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 		/**
 		 * WebChat service.
 		 * @module purecloud-guest-chat-client/api/WebChatApi
-		 * @version 13.8.0
+		 * @version 13.8.1
 		 */
 
 		/**
@@ -1339,7 +1342,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 	 * </pre>
 	 * </p>
 	 * @module purecloud-guest-chat-client/index
-	 * @version 13.8.0
+	 * @version 13.8.1
 	 */
 	class platformClient {
 		constructor() {
