@@ -2258,7 +2258,7 @@ class Configuration {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 13.8.1
+ * @version 13.8.2
  */
 class ApiClient {
 	/**
@@ -2845,7 +2845,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 13.8.1
+	 * @version 13.8.2
 	 */
 
 	/**
@@ -3214,7 +3214,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 13.8.1
+ * @version 13.8.2
  */
 class platformClient {
 	constructor() {
