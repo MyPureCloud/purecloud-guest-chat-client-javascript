@@ -5,7 +5,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 13.9.0
+	 * @version 14.0.0
 	 */
 
 	/**
@@ -51,6 +51,7 @@ class WebChatApi {
 
 	/**
 	 * Get a media request in the conversation
+	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-legacy-co-browse-and-screenshare/
 	 * @param {String} conversationId conversationId
 	 * @param {String} mediaRequestId mediaRequestId
 	 */
@@ -223,6 +224,7 @@ class WebChatApi {
 
 	/**
 	 * Update a media request in the conversation, setting the state to ACCEPTED/DECLINED/ERRORED
+	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-legacy-co-browse-and-screenshare/
 	 * @param {String} conversationId conversationId
 	 * @param {String} mediaRequestId mediaRequestId
 	 * @param {Object} body Request

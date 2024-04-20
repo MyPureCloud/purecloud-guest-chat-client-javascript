@@ -379,7 +379,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 	/**
 	 * @module purecloud-guest-chat-client/ApiClient
-	 * @version 13.9.0
+	 * @version 14.0.0
 	 */
 	class ApiClient {
 		/**
@@ -973,7 +973,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 		/**
 		 * WebChat service.
 		 * @module purecloud-guest-chat-client/api/WebChatApi
-		 * @version 13.9.0
+		 * @version 14.0.0
 		 */
 
 		/**
@@ -1019,6 +1019,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 		/**
 		 * Get a media request in the conversation
+		 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-legacy-co-browse-and-screenshare/
 		 * @param {String} conversationId conversationId
 		 * @param {String} mediaRequestId mediaRequestId
 		 */
@@ -1191,6 +1192,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 
 		/**
 		 * Update a media request in the conversation, setting the state to ACCEPTED/DECLINED/ERRORED
+		 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-legacy-co-browse-and-screenshare/
 		 * @param {String} conversationId conversationId
 		 * @param {String} mediaRequestId mediaRequestId
 		 * @param {Object} body Request
@@ -1342,7 +1344,7 @@ ${this.formatValue('Status', statusCode)}${this.formatValue('Headers', this.form
 	 * </pre>
 	 * </p>
 	 * @module purecloud-guest-chat-client/index
-	 * @version 13.9.0
+	 * @version 14.0.0
 	 */
 	class platformClient {
 		constructor() {
