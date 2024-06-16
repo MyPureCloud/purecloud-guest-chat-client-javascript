@@ -1,28 +1,16 @@
-Platform API version: 7992
+Platform API version: 8165
 
 
 
 
-# Major Changes (2 changes)
-
-**GET /api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}** (1 change)
-
-* Has been deprecated
-
-**PATCH /api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}** (1 change)
-
-* Has been deprecated
+# Major Changes (0 changes)
 
 
-# Minor Changes (0 changes)
+# Minor Changes (1 change)
+
+**Limit** (1 change)
+
+* Enum value social.media was added to property namespace
 
 
-# Point Changes (2 changes)
-
-**GET /api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}** (1 change)
-
-* Description was changed
-
-**PATCH /api/v2/webchat/guest/conversations/{conversationId}/mediarequests/{mediaRequestId}** (1 change)
-
-* Description was changed
+# Point Changes (0 changes)
