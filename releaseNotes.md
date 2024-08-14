@@ -1,4 +1,4 @@
-Platform API version: 8165
+Platform API version: 8336
 
 
 
@@ -10,7 +10,7 @@ Platform API version: 8165
 
 **Limit** (1 change)
 
-* Enum value social.media was added to property namespace
+* Enum value internal.messaging was added to property namespace
 
 
 # Point Changes (0 changes)

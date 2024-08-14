@@ -215,11 +215,11 @@ declare namespace Models {
 		"pageSize"?: number;
 		"pageNumber"?: number;
 		"total"?: number;
-		"previousUri"?: string;
-		"lastUri"?: string;
 		"firstUri"?: string;
 		"selfUri"?: string;
+		"lastUri"?: string;
 		"nextUri"?: string;
+		"previousUri"?: string;
 		"pageCount"?: number;
 	}
 	
