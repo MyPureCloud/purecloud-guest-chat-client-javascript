@@ -215,9 +215,9 @@ declare namespace Models {
 		"pageSize"?: number;
 		"pageNumber"?: number;
 		"total"?: number;
+		"lastUri"?: string;
 		"firstUri"?: string;
 		"selfUri"?: string;
-		"lastUri"?: string;
 		"nextUri"?: string;
 		"previousUri"?: string;
 		"pageCount"?: number;

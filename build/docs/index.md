@@ -1,6 +1,4 @@
----
-title: Guest Chat Client - JavaScript
----
+# Guest Chat Client - JavaScript
 
 ## Resources
 
@@ -10,9 +8,11 @@ title: Guest Chat Client - JavaScript
 
 [Platform release notes](releaseNotes.md)
 
-* **Documentation** https://developer.genesys.cloud/devapps/sdk/docexplorer/purecloudjavascriptGuest/
+* **Documentation** https://mypurecloud.github.io/purecloud-guest-chat-client-javascript/
 * **Source** https://github.com/MyPureCloud/purecloud-guest-chat-client-javascript
 * **Guest chat documentation** https://developer.genesys.cloud/commdigital/digital/webchat/guestchat
+
+Documentation version purecloud-guest-chat-client@14.4.0
 
 ## CommonJS
 
@@ -31,7 +31,7 @@ For direct use in a browser script:
 
 ```html
 <!-- Include the CJS SDK -->
-<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/14.3.0/purecloud-guest-chat-client.min.js"></script>
+<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/14.4.0/purecloud-guest-chat-client.min.js"></script>
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
@@ -48,7 +48,7 @@ For direct use in a browser script:
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
-  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/14.3.0/purecloud-guest-chat-client.min.js'], (platformClient) => {
+  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/14.4.0/purecloud-guest-chat-client.min.js'], (platformClient) => {
     console.log(platformClient);
   });
 </script>
