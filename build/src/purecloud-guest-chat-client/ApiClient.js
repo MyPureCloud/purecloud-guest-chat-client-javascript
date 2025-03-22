@@ -3,7 +3,7 @@ import Configuration from './configuration.js';
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 14.7.0
+ * @version 15.0.0
  */
 class ApiClient {
 	/**
