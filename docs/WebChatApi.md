@@ -645,4 +645,4 @@ apiInstance.postWebchatGuestConversations(body)
 **CreateWebChatConversationResponse**
 
 
-_purecloud-guest-chat-client@15.2.0_
+_purecloud-guest-chat-client@15.3.0_
