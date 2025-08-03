@@ -2258,7 +2258,7 @@ class Configuration {
 
 /**
  * @module purecloud-guest-chat-client/ApiClient
- * @version 16.0.0
+ * @version 16.1.0
  */
 class ApiClient {
 	/**
@@ -2845,7 +2845,7 @@ class WebChatApi {
 	/**
 	 * WebChat service.
 	 * @module purecloud-guest-chat-client/api/WebChatApi
-	 * @version 16.0.0
+	 * @version 16.1.0
 	 */
 
 	/**
@@ -2862,7 +2862,7 @@ class WebChatApi {
 
 	/**
 	 * Remove a member from a chat conversation
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-removal-of-acd-web-chat-version-2/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-removal-of-acd-web-chat-version-2/
 	 * @param {String} conversationId conversationId
 	 * @param {String} memberId memberId
 	 */
@@ -2892,7 +2892,7 @@ class WebChatApi {
 
 	/**
 	 * Get a media request in the conversation
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-legacy-co-browse-and-screenshare/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-legacy-co-browse-and-screenshare/
 	 * @param {String} conversationId conversationId
 	 * @param {String} mediaRequestId mediaRequestId
 	 */
@@ -2922,7 +2922,7 @@ class WebChatApi {
 
 	/**
 	 * Get all media requests to the guest in the conversation
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-removal-of-acd-web-chat-version-2/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-removal-of-acd-web-chat-version-2/
 	 * @param {String} conversationId conversationId
 	 */
 	getWebchatGuestConversationMediarequests(conversationId) { 
@@ -2947,7 +2947,7 @@ class WebChatApi {
 
 	/**
 	 * Get a web chat conversation member
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-removal-of-acd-web-chat-version-2/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-removal-of-acd-web-chat-version-2/
 	 * @param {String} conversationId conversationId
 	 * @param {String} memberId memberId
 	 */
@@ -2977,7 +2977,7 @@ class WebChatApi {
 
 	/**
 	 * Get the members of a chat conversation.
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-removal-of-acd-web-chat-version-2/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-removal-of-acd-web-chat-version-2/
 	 * @param {String} conversationId conversationId
 	 * @param {Object} opts Optional parameters
 	 * @param {Number} opts.pageSize The number of entries to return per page, or omitted for the default. (default to 25)
@@ -3008,7 +3008,7 @@ class WebChatApi {
 
 	/**
 	 * Get a web chat conversation message
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-removal-of-acd-web-chat-version-2/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-removal-of-acd-web-chat-version-2/
 	 * @param {String} conversationId conversationId
 	 * @param {String} messageId messageId
 	 */
@@ -3038,7 +3038,7 @@ class WebChatApi {
 
 	/**
 	 * Get the messages of a chat conversation.
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-removal-of-acd-web-chat-version-2/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-removal-of-acd-web-chat-version-2/
 	 * @param {String} conversationId conversationId
 	 * @param {Object} opts Optional parameters
 	 * @param {String} opts.after If available, get the messages chronologically after the id of this message
@@ -3070,7 +3070,7 @@ class WebChatApi {
 
 	/**
 	 * Update a media request in the conversation, setting the state to ACCEPTED/DECLINED/ERRORED
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-legacy-co-browse-and-screenshare/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-legacy-co-browse-and-screenshare/
 	 * @param {String} conversationId conversationId
 	 * @param {String} mediaRequestId mediaRequestId
 	 * @param {Object} body Request
@@ -3105,7 +3105,7 @@ class WebChatApi {
 
 	/**
 	 * Send a message in a chat conversation.
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-removal-of-acd-web-chat-version-2/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-removal-of-acd-web-chat-version-2/
 	 * @param {String} conversationId conversationId
 	 * @param {String} memberId memberId
 	 * @param {Object} body Message
@@ -3140,7 +3140,7 @@ class WebChatApi {
 
 	/**
 	 * Send a typing-indicator in a chat conversation.
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-removal-of-acd-web-chat-version-2/
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-removal-of-acd-web-chat-version-2/
 	 * @param {String} conversationId conversationId
 	 * @param {String} memberId memberId
 	 */
@@ -3170,7 +3170,7 @@ class WebChatApi {
 
 	/**
 	 * Create an ACD chat conversation from an external customer.
-	 * This endpoint is deprecated. Please see the article https://help.mypurecloud.com/articles/deprecation-removal-of-acd-web-chat-version-2/. This endpoint will create a new ACD Chat conversation under the specified Chat Deployment. The conversation will begin with a guest member in it (with a role&#x3D;CUSTOMER) according to the customer information that is supplied. If the guest member is authenticated, the memberAuthToken field should include his JWT as generated by the POST /api/v2/signeddata resource; if the guest member is anonymous (and the Deployment permits it) this field can be omitted. The returned data includes the IDs of the conversation created, along with a newly-create JWT token that you can supply to all future endpoints as authentication to perform operations against that conversation. After successfully creating a conversation, you should connect a websocket to the event stream named in the eventStreamUri field of the response; the conversation is not routed until the event stream is attached.
+	 * This endpoint is deprecated. Please see the article https://help.genesys.cloud/articles/deprecation-removal-of-acd-web-chat-version-2/. This endpoint will create a new ACD Chat conversation under the specified Chat Deployment. The conversation will begin with a guest member in it (with a role&#x3D;CUSTOMER) according to the customer information that is supplied. If the guest member is authenticated, the memberAuthToken field should include his JWT as generated by the POST /api/v2/signeddata resource; if the guest member is anonymous (and the Deployment permits it) this field can be omitted. The returned data includes the IDs of the conversation created, along with a newly-create JWT token that you can supply to all future endpoints as authentication to perform operations against that conversation. After successfully creating a conversation, you should connect a websocket to the event stream named in the eventStreamUri field of the response; the conversation is not routed until the event stream is attached.
 	 * @param {Object} body CreateConversationRequest
 	 */
 	postWebchatGuestConversations(body) { 
@@ -3224,7 +3224,7 @@ class WebChatApi {
  * </pre>
  * </p>
  * @module purecloud-guest-chat-client/index
- * @version 16.0.0
+ * @version 16.1.0
  */
 class platformClient {
 	constructor() {
