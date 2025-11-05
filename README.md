@@ -1,5 +1,7 @@
 # Guest Chat Client - JavaScript
 
+**Feature and SDK deprecation: As of 6.11.2025 - Genesys Cloud no longer support ACD Web Chat v2, which is available to customers via all its corresponding Chat Widget versions. This is further to the deprecation of ACD Web Chat v1, which was announced earlier. As a result, Predictive Engagement will also end support for these legacy web chat versions. For more information, see [Deprecation: Removal of ACD Web Chat (version 2)](https://help.mypurecloud.com/announcements/deprecation-predictive-engagement-support-for-acd-web-chat-version-2/). All existing customers are encouraged to migrate to [Web Messaging and Messenger](https://help.mypurecloud.com/articles/about-web-messaging/). As a result, this is the last version of the Guest Chat Javascript SDK.**
+
 ## Resources
 
 [![GitHub release](https://img.shields.io/github/release/mypurecloud/purecloud-guest-chat-client-javascript.svg)](https://github.com/MyPureCloud/purecloud-guest-chat-client-javascript)
@@ -12,7 +14,7 @@
 * **Source** https://github.com/MyPureCloud/purecloud-guest-chat-client-javascript
 * **Guest chat documentation** https://developer.genesys.cloud/commdigital/digital/webchat/guestchat
 
-Documentation version purecloud-guest-chat-client@17.2.0
+Documentation version purecloud-guest-chat-client@18.0.0
 
 ## CommonJS
 
@@ -31,7 +33,7 @@ For direct use in a browser script:
 
 ```html
 <!-- Include the CJS SDK -->
-<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/17.2.0/purecloud-guest-chat-client.min.js"></script>
+<script src="https://sdk-cdn.mypurecloud.com/javascript-guest/18.0.0/purecloud-guest-chat-client.min.js"></script>
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
@@ -48,7 +50,7 @@ For direct use in a browser script:
 
 <script type="text/javascript">
   // Obtain a reference to the platformClient object
-  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/17.2.0/purecloud-guest-chat-client.min.js'], (platformClient) => {
+  requirejs(['https://sdk-cdn.mypurecloud.com/javascript-guest/amd/18.0.0/purecloud-guest-chat-client.min.js'], (platformClient) => {
     console.log(platformClient);
   });
 </script>
